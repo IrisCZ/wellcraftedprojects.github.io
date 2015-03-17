@@ -17,7 +17,6 @@ import (
 type MongoMock struct{
 }
 
-var mongoMock MongoMock
 var paramsReceived = make([] interface{}, 2)
 
 func (mongo MongoMock) Save(obj model.Model, collectionName string) string {
@@ -28,8 +27,7 @@ func (mongo MongoMock) Save(obj model.Model, collectionName string) string {
 
 func TestMain(m *testing.M){
   mongo.Init("localhost","wellcrafted")
-  mongoMock = MongoMock{}
-  user.Init(mongoMock)
+  user.Init(MongoMock{})
 
   retCode := m.Run()
 
@@ -52,7 +50,21 @@ func Test_asks_mongo_for_saving_a_user_with_params_received(t *testing.T) {
 
   assert.Equal(t, paramsReceived[0], &userExpected)
   assert.Equal(t, paramsReceived[1], "users")
-
-
 }
+
+func Test_returns_the_id_of_the_new_user(t *testing.T) {
+
+    handler := func(response http.ResponseWriter, request *http.Request) {
+        newUser(response,request)
+    }
+    reader := bytes.NewReader([]byte(`{"email": "an@email.com", "password":"anyPassword"}`))
+    req, _ := http.NewRequest("POST", "/user/new", reader)
+
+    recoder := httptest.NewRecorder()
+    handler(recoder, req)
+
+    assert.Equal(t, recoder.Body.String(), `{"Result":"OK","id":"ID"}`)
+}
+
+
 
