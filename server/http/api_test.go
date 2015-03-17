@@ -18,12 +18,12 @@ type MongoMock struct{
 }
 
 var mongoMock MongoMock
-var responseExpected string
+var paramsReceived = make([] interface{}, 2)
 
 func (mongo MongoMock) Save(obj model.Model, collectionName string) string {
-  theUser := obj.(*user.User)
-  responseExpected = `{"email":"`+theUser.Email+`","password":"`+theUser.Password+`"}`
-  return responseExpected
+  paramsReceived[0] = obj.(*user.User)
+  paramsReceived[1] = collectionName
+  return "ID"
 }
 
 func TestMain(m *testing.M){
@@ -48,9 +48,11 @@ func Test_asks_mongo_for_saving_a_user_with_params_received(t *testing.T) {
   recoder := httptest.NewRecorder()
   handler(recoder, req)
 
-  passwordExpected := crypto.EncodePassword("anyPassword")
+  userExpected := user.User{Email:"an@email.com", Password:crypto.EncodePassword("anyPassword")}
 
-  assert.Equal(t, responseExpected, `{"email":"an@email.com","password":"`+passwordExpected+`"}`, "They should be equal")
+  assert.Equal(t, paramsReceived[0], &userExpected)
+  assert.Equal(t, paramsReceived[1], "users")
+
 
 }
 
