@@ -19,10 +19,10 @@ type MongoMock struct{
 
 var paramsReceived = make([] interface{}, 2)
 
-func (mongo MongoMock) Save(obj model.Model, collectionName string) string {
+func (mongo MongoMock) Save(obj model.Model, collectionName string) (string, error) {
   paramsReceived[0] = obj.(*user.User)
   paramsReceived[1] = collectionName
-  return "ID"
+  return "ID",nil
 }
 
 var handler = func(response http.ResponseWriter, request *http.Request) {

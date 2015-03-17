@@ -3,13 +3,14 @@ package user
 import (
   "github.com/jjballano/wellcraftedprojects/database"
   "github.com/jjballano/wellcraftedprojects/crypto"
+    "gopkg.in/mgo.v2/bson"
 )
 
 const collectionName string = "users"
 
 
 type User struct {
-  Id string
+  Id bson.ObjectId `_id,omitempty`
   Email string
   Password string
 }
@@ -22,5 +23,10 @@ func Init(database database.Database){
 
 func (user *User) Save() string{
   user.Password = crypto.EncodePassword(user.Password)
-  return db.Save(user, collectionName)
+  newUser,_ := db.Save(user, collectionName)
+  return newUser
+}
+
+func (user *User) SetId(id bson.ObjectId){
+  user.Id = id
 }
