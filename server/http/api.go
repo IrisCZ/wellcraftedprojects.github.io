@@ -4,7 +4,6 @@ import (
     "fmt"
     "github.com/gorilla/mux"
     "github.com/jjballano/wellcraftedprojects/model/user"
-    "io/ioutil"
     "net/http"
     "os"
     "encoding/json"
@@ -12,9 +11,7 @@ import (
 
 func newUser(response http.ResponseWriter, request *http.Request) {
   defer request.Body.Close()
-  bodySave, _ := ioutil.ReadAll(request.Body)
-  userReceived := user.User{}
-  json.Unmarshal(bodySave, &userReceived)
+  userReceived := user.From(request.Body)
   id := userReceived.Save()
   jsonValue := map[string]string{"Result": "OK"}
   jsonValue["id"] = id

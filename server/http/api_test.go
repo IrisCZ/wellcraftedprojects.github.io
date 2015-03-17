@@ -25,6 +25,11 @@ func (mongo MongoMock) Save(obj model.Model, collectionName string) string {
   return "ID"
 }
 
+var handler = func(response http.ResponseWriter, request *http.Request) {
+    newUser(response,request)
+}
+
+
 func TestMain(m *testing.M){
   mongo.Init("localhost","wellcrafted")
   user.Init(MongoMock{})
@@ -37,14 +42,10 @@ func TestMain(m *testing.M){
 
 func Test_asks_mongo_for_saving_a_user_with_params_received(t *testing.T) {
 
-  handler := func(response http.ResponseWriter, request *http.Request) {
-    newUser(response,request)
-  }
   reader := bytes.NewReader([]byte(`{"email": "an@email.com", "password":"anyPassword"}`))
   req, _ := http.NewRequest("POST", "/user/new", reader)
 
-  recoder := httptest.NewRecorder()
-  handler(recoder, req)
+  handler(httptest.NewRecorder(), req)
 
   userExpected := user.User{Email:"an@email.com", Password:crypto.EncodePassword("anyPassword")}
 
@@ -54,9 +55,6 @@ func Test_asks_mongo_for_saving_a_user_with_params_received(t *testing.T) {
 
 func Test_returns_the_id_of_the_new_user(t *testing.T) {
 
-    handler := func(response http.ResponseWriter, request *http.Request) {
-        newUser(response,request)
-    }
     reader := bytes.NewReader([]byte(`{"email": "an@email.com", "password":"anyPassword"}`))
     req, _ := http.NewRequest("POST", "/user/new", reader)
 
