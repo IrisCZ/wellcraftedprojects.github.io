@@ -26,7 +26,12 @@ func (mongo MongoMock) Save(obj model.Model, collectionName string) (string, err
 }
 
 var handler = func(response http.ResponseWriter, request *http.Request) {
-    newUser(response,request)
+  if(request.URL.String() == "/user/new"){
+    NewUser(response,request)
+  }
+  if(request.URL.String() == "/user/login"){
+    Login(response,request)
+  }
 }
 
 
@@ -63,6 +68,64 @@ func Test_returns_the_id_of_the_new_user(t *testing.T) {
 
     assert.Equal(t, recoder.Body.String(), `{"Result":"OK","id":"ID"}`)
 }
+
+func Test_returns_an_error_if_email_is_not_provider_when_ask_for_new_user(t *testing.T) {
+
+    reader := bytes.NewReader([]byte(`{"password":"anyPassword"}`))
+    req, _ := http.NewRequest("POST", "/user/new", reader)
+
+    recoder := httptest.NewRecorder()
+    handler(recoder, req)
+
+    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
+}
+
+func Test_returns_an_error_if_password_is_not_provider_when_ask_for_new_user(t *testing.T) {
+
+    reader := bytes.NewReader([]byte(`{"email": "an@email.com"}`))
+    req, _ := http.NewRequest("POST", "/user/new", reader)
+
+    recoder := httptest.NewRecorder()
+    handler(recoder, req)
+
+    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
+}
+
+func Test_returns_an_error_if_email_is_not_provider_when_ask_for_login(t *testing.T) {
+
+    reader := bytes.NewReader([]byte(`{"password":"anyPassword"}`))
+    req, _ := http.NewRequest("POST", "/user/login", reader)
+
+    recoder := httptest.NewRecorder()
+    handler(recoder, req)
+
+    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
+}
+
+func Test_returns_an_error_if_password_is_not_provider_when_ask_for_login(t *testing.T) {
+
+    reader := bytes.NewReader([]byte(`{"email": "an@email.com"}`))
+    req, _ := http.NewRequest("POST", "/user/login", reader)
+
+    recoder := httptest.NewRecorder()
+    handler(recoder, req)
+
+    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
+}
+//
+//func Test_returns_OK_when_login_is_correct(t *testing.T) {
+//PRIMERO TIENE QUE EXISTIR EN LA "BD" (el mock). PARA ELLO HABRA QUE HACER UN MOCK DE LA OPERACION QUE EN FUNCION
+//DE ALGUN PARAMETRO ME DEVUELVA OK o NO.
+//PARA UN SIGUIENTE TEST, DEBERIA DE DEVOLVERME UN TOKEN DE SESSION.
+//    reader := bytes.NewReader([]byte(`{"email": "an@email.com", "password":"anyPassword"}`))
+//    req, _ := http.NewRequest("POST", "/user/login", reader)
+//
+//    recoder := httptest.NewRecorder()
+//    handler(recoder, req)
+//
+//    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
+//}
+
 
 
 
