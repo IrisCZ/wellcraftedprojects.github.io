@@ -3,7 +3,11 @@ package user
 import (
   "github.com/jjballano/wellcraftedprojects/database"
   "github.com/jjballano/wellcraftedprojects/crypto"
-    "gopkg.in/mgo.v2/bson"
+  "gopkg.in/mgo.v2/bson"
+  "net/http"
+  "io/ioutil"
+  "encoding/json"
+  "errors"
 )
 
 const collectionName string = "users"
@@ -29,4 +33,17 @@ func (user *User) Save() string{
 
 func (user *User) SetId(id bson.ObjectId){
   user.Id = id
+}
+
+func (user *User) UnmarshalHTTP(request *http.Request) error {
+  defer request.Body.Close()
+  bodySave, _ := ioutil.ReadAll(request.Body)
+  error := json.Unmarshal(bodySave, user)
+  if error != nil{
+    return error
+  }
+  if len(user.Email) < 1 || len(user.Password) < 1 {
+    return errors.New("Email and password are mandatory")
+  }
+  return nil
 }

@@ -6,6 +6,7 @@ import (
     "github.com/jjballano/wellcraftedprojects/model/user"
     "net/http"
     "os"
+    "encoding/json"
 )
 
 type ResponseParam struct {
@@ -14,14 +15,19 @@ type ResponseParam struct {
 }
 
 func newUser(response http.ResponseWriter, request *http.Request) {
-  defer request.Body.Close()
-  theUser := user.User{}
-  ParseBodyTo(request.Body, &theUser)
+  theUser := new(user.User)
+  error := getEntity(request, theUser)
+  params := make([]ResponseParam,1)
+  if error != nil {
+    params[0] = ResponseParam{Name:"error", Value:error.Error()}
+    parseResponseTo(response, "ERROR", params)
+    return
+  }
   id := theUser.Save()
 
-  params := make([]ResponseParam,1)
+
   params[0] = ResponseParam{Name:"id", Value:id}
-  ParseResponseTo(response, "OK", params)
+  parseResponseTo(response, "OK", params)
 }
 
 func notFound(response http.ResponseWriter, request *http.Request) {
@@ -38,4 +44,18 @@ func StartApi() {
     port = "1337"
   }
   http.ListenAndServe(":"+port, nil)
+}
+
+func getEntity(r *http.Request, v Entity) error {
+    return v.UnmarshalHTTP(r)
+}
+
+func parseResponseTo(response http.ResponseWriter, result string, params []ResponseParam){
+    jsonValue := map[string]string{"Result": result}
+    length := len(params)
+    for i:=0; i < length; i++ {
+        jsonValue[params[i].Name] = params[i].Value
+    }
+    resultJson, _ := json.Marshal(jsonValue)
+    fmt.Fprintf(response, string(resultJson))
 }
