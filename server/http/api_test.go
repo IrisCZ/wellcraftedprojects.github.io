@@ -12,6 +12,10 @@ import (
   "net/http/httptest"
   "bytes"
   "github.com/stretchr/testify/assert"
+  "errors"
+  "crypto/sha256"
+  "encoding/base64"
+  "encoding/json"
 )
 
 type MongoMock struct{
@@ -23,6 +27,20 @@ func (mongo MongoMock) Save(obj model.Model, collectionName string) (string, err
   paramsReceived[0] = obj.(*user.User)
   paramsReceived[1] = collectionName
   return "ID",nil
+}
+
+func (mongo MongoMock) FindOne(collectionName string, params map[string]string, model model.Model) error{
+  hash := sha256.New()
+  hash.Write([]byte("anyPassword"))
+  expectedPassword := base64.StdEncoding.EncodeToString(hash.Sum(nil))
+  if params["password"] != expectedPassword {
+      return errors.New("Password not encripted")
+  }
+  if params["email"] != "user@exists.com" {
+    return errors.New("Not found")
+  }
+  json.Unmarshal([]byte(`{"email":"`+params["email"]+`"}`), model)
+  return nil
 }
 
 var handler = func(response http.ResponseWriter, request *http.Request) {
@@ -60,72 +78,101 @@ func Test_asks_mongo_for_saving_a_user_with_params_received(t *testing.T) {
 
 func Test_returns_the_id_of_the_new_user(t *testing.T) {
 
-    reader := bytes.NewReader([]byte(`{"email": "an@email.com", "password":"anyPassword"}`))
-    req, _ := http.NewRequest("POST", "/user/new", reader)
+  reader := bytes.NewReader([]byte(`{"email": "an@email.com", "password":"anyPassword"}`))
+  req, _ := http.NewRequest("POST", "/user/new", reader)
 
-    recoder := httptest.NewRecorder()
-    handler(recoder, req)
+  recoder := httptest.NewRecorder()
+  handler(recoder, req)
 
-    assert.Equal(t, recoder.Body.String(), `{"Result":"OK","id":"ID"}`)
+  response := parseResponse(recoder)
+
+  assert.Equal(t, response["Result"], "OK")
+  assert.Equal(t, response["id"], "ID")
 }
 
 func Test_returns_an_error_if_email_is_not_provider_when_ask_for_new_user(t *testing.T) {
 
-    reader := bytes.NewReader([]byte(`{"password":"anyPassword"}`))
-    req, _ := http.NewRequest("POST", "/user/new", reader)
+  reader := bytes.NewReader([]byte(`{"password":"anyPassword"}`))
+  req, _ := http.NewRequest("POST", "/user/new", reader)
 
-    recoder := httptest.NewRecorder()
-    handler(recoder, req)
+  recoder := httptest.NewRecorder()
+  handler(recoder, req)
 
-    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
+  response := parseResponse(recoder)
+
+  assert.Equal(t, response["Result"], "ERROR")
+  assert.Equal(t, response["error"], "Email and password are mandatory")
 }
 
 func Test_returns_an_error_if_password_is_not_provider_when_ask_for_new_user(t *testing.T) {
 
-    reader := bytes.NewReader([]byte(`{"email": "an@email.com"}`))
-    req, _ := http.NewRequest("POST", "/user/new", reader)
+  reader := bytes.NewReader([]byte(`{"email": "an@email.com"}`))
+  req, _ := http.NewRequest("POST", "/user/new", reader)
 
-    recoder := httptest.NewRecorder()
-    handler(recoder, req)
+  recoder := httptest.NewRecorder()
+  handler(recoder, req)
 
-    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
+  response := parseResponse(recoder)
+
+  assert.Equal(t, response["Result"], "ERROR")
+  assert.Equal(t, response["error"], "Email and password are mandatory")
 }
 
-func Test_returns_an_error_if_email_is_not_provider_when_ask_for_login(t *testing.T) {
+func Test_returns_an_error_if_login_is_not_provider_when_ask_for_login(t *testing.T) {
 
-    reader := bytes.NewReader([]byte(`{"password":"anyPassword"}`))
-    req, _ := http.NewRequest("POST", "/user/login", reader)
+  reader := bytes.NewReader([]byte(`{"password":"anyPassword"}`))
+  req, _ := http.NewRequest("POST", "/user/login", reader)
 
-    recoder := httptest.NewRecorder()
-    handler(recoder, req)
+  recoder := httptest.NewRecorder()
+  handler(recoder, req)
 
-    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
+  response := parseResponse(recoder)
+
+  assert.Equal(t, response["Result"], "ERROR")
+  assert.Equal(t, response["error"], "Login and password are mandatory")
 }
 
 func Test_returns_an_error_if_password_is_not_provider_when_ask_for_login(t *testing.T) {
 
-    reader := bytes.NewReader([]byte(`{"email": "an@email.com"}`))
-    req, _ := http.NewRequest("POST", "/user/login", reader)
+  reader := bytes.NewReader([]byte(`{"login": "an@email.com"}`))
+  req, _ := http.NewRequest("POST", "/user/login", reader)
 
-    recoder := httptest.NewRecorder()
-    handler(recoder, req)
+  recoder := httptest.NewRecorder()
+  handler(recoder, req)
 
-    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
+  response := parseResponse(recoder)
+
+  assert.Equal(t, response["Result"], "ERROR")
+  assert.Equal(t, response["error"], "Login and password are mandatory")
 }
-//
-//func Test_returns_OK_when_login_is_correct(t *testing.T) {
-//PRIMERO TIENE QUE EXISTIR EN LA "BD" (el mock). PARA ELLO HABRA QUE HACER UN MOCK DE LA OPERACION QUE EN FUNCION
-//DE ALGUN PARAMETRO ME DEVUELVA OK o NO.
-//PARA UN SIGUIENTE TEST, DEBERIA DE DEVOLVERME UN TOKEN DE SESSION.
-//    reader := bytes.NewReader([]byte(`{"email": "an@email.com", "password":"anyPassword"}`))
-//    req, _ := http.NewRequest("POST", "/user/login", reader)
-//
-//    recoder := httptest.NewRecorder()
-//    handler(recoder, req)
-//
-//    assert.Equal(t, recoder.Body.String(), `{"Result":"ERROR","error":"Email and password are mandatory"}`)
-//}
 
+func Test_returns_OK_when_login_is_correct(t *testing.T) {
+  reader := bytes.NewReader([]byte(`{"login": "user@exists.com", "password":"anyPassword"}`))
+  req, _ := http.NewRequest("POST", "/user/login", reader)
 
+  recoder := httptest.NewRecorder()
+  handler(recoder, req)
 
+  response := parseResponse(recoder)
+
+  assert.Equal(t, response["Result"], "OK")
+}
+
+func Test_returns_the_session_token_with_user_info_when_login_is_correct(t *testing.T) {
+  reader := bytes.NewReader([]byte(`{"login": "user@exists.com", "password":"anyPassword"}`))
+  req, _ := http.NewRequest("POST", "/user/login", reader)
+
+  recoder := httptest.NewRecorder()
+  handler(recoder, req)
+
+  response := parseResponse(recoder)
+  tokenExpected := crypto.CreateToken(map[string]interface{}{"login":"user@exists.com"})
+  assert.Equal(t, response["token"], tokenExpected)
+}
+
+func parseResponse(recoder *httptest.ResponseRecorder) map[string]interface{} {
+  var response map[string]interface{}
+  json.Unmarshal(recoder.Body.Bytes(), &response)
+  return response
+}
 

@@ -34,3 +34,24 @@ func (mongo Mongo) Save(obj model.Model, collectionName string) (string, error) 
   }
   return fmt.Sprintf("%x", string(id)),nil
 }
+
+func (mongo *Mongo) FindOne(collectionName string, params map[string]string, obj model.Model) error {
+    session, err := mgo.Dial(host)
+    if err != nil{
+        panic(err)
+    }
+    defer session.Close()
+
+    database := session.DB(database)
+    collection := database.C(collectionName)
+    mongoParams := bson.M{}
+    for key,value := range params {
+      mongoParams[key] = value
+    }
+    err = collection.Find(mongoParams).One(obj)
+    if err != nil{
+        return err
+    }
+    return nil
+}
+

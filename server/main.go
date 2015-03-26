@@ -10,7 +10,7 @@ func main() {
 
     mongo.Init("localhost","wellcrafted")
 
-    user.Init(mongo.Mongo{})
+    user.Init(new (mongo.Mongo))
 
     http.StartApi()
 }

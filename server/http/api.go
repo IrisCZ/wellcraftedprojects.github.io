@@ -21,6 +21,7 @@ func notFound(response http.ResponseWriter, request *http.Request) {
 func StartApi() {
   router := mux.NewRouter()
   router.HandleFunc("/user/new", NewUser).Methods("POST")
+  router.HandleFunc("/login", Login).Methods("POST")
   router.HandleFunc("/", notFound)
   http.Handle("/", router)
   port := os.Getenv("PORT")
