@@ -33,13 +33,10 @@ func (mongo MongoMock) FindOne(collectionName string, params map[string]string, 
   hash := sha256.New()
   hash.Write([]byte("anyPassword"))
   expectedPassword := base64.StdEncoding.EncodeToString(hash.Sum(nil))
-  if params["password"] != expectedPassword {
-      return errors.New("Password not encripted")
-  }
   if params["email"] != "user@exists.com" {
     return errors.New("Not found")
   }
-  json.Unmarshal([]byte(`{"email":"`+params["email"]+`"}`), model)
+  json.Unmarshal([]byte(`{"email":"`+params["email"]+`","password":"`+expectedPassword+`"}`), model)
   return nil
 }
 
@@ -116,6 +113,20 @@ func Test_returns_an_error_if_password_is_not_provider_when_ask_for_new_user(t *
 
   assert.Equal(t, response["Result"], "ERROR")
   assert.Equal(t, response["error"], "Email and password are mandatory")
+}
+
+func Test_returns_an_error_if_user_already_exists_when_ask_for_new_user(t *testing.T) {
+
+    reader := bytes.NewReader([]byte(`{"email": "user@exists.com", "password":"anyPassword"}`))
+    req, _ := http.NewRequest("POST", "/user/new", reader)
+
+    recoder := httptest.NewRecorder()
+    handler(recoder, req)
+
+    response := parseResponse(recoder)
+
+    assert.Equal(t, response["Result"], "ERROR")
+    assert.Equal(t, response["error"], "user.exists.error")
 }
 
 func Test_returns_an_error_if_login_is_not_provider_when_ask_for_login(t *testing.T) {

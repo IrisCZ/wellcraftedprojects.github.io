@@ -19,7 +19,7 @@ type User struct {
   Password string
 }
 
-type Login struct {
+type Credentials struct {
   Login string
   Password string
 }
@@ -30,26 +30,37 @@ func Init(database database.Database){
   db = database
 }
 
-func (user *User) Save() string{
+func (user *User) Save() (string,error){
   user.Password = crypto.EncodePassword(user.Password)
+  if FindBy(user.Email) != nil {
+    return "",errors.New("user.exists.error")
+  }
   newUser,_ := db.Save(user, collectionName)
-  return newUser
+  return newUser,nil
 }
 
 func (user *User) SetId(id bson.ObjectId){
   user.Id = id
 }
 
-func FindBy(email string, password string) *User {
-  params := make(map[string]string)
-  params["email"] = email
-  params["password"] = crypto.EncodePassword(password)
-  user := new(User)
-  error := db.FindOne(collectionName, params, user)
-  if error != nil {
-    return nil
+func FindBy(email string) *User {
+    params := make(map[string]string)
+    params["email"] = email
+    user := new(User)
+    error := db.FindOne(collectionName, params, user)
+    if error != nil {
+        return nil
+    }
+    return user
+}
+
+func Login(email string, password string) *User {
+  passwordEncoded := crypto.EncodePassword(password)
+  user := FindBy(email)
+  if user != nil && user.Password == passwordEncoded {
+    return user
   }
-  return user
+  return nil
 }
 
 func (user *User) UnmarshalHTTP(request *http.Request) error {
@@ -65,14 +76,14 @@ func (user *User) UnmarshalHTTP(request *http.Request) error {
   return nil
 }
 
-func (login *Login) UnmarshalHTTP(request *http.Request) error {
+func (credentials *Credentials) UnmarshalHTTP(request *http.Request) error {
     defer request.Body.Close()
     bodySave, _ := ioutil.ReadAll(request.Body)
-    error := json.Unmarshal(bodySave, login)
+    error := json.Unmarshal(bodySave, credentials)
     if error != nil{
         return error
     }
-    if len(login.Login) < 1 || len(login.Password) < 1 {
+    if len(credentials.Login) < 1 || len(credentials.Password) < 1 {
         return errors.New("Login and password are mandatory")
     }
     return nil

@@ -12,27 +12,28 @@ func NewUser(response http.ResponseWriter, request *http.Request) {
     returnError(response, error)
     return
   }
-  id := theUser.Save()
+//  params := make([]ResponseParam,1)
 
-  params := make([]ResponseParam,1)
-  params[0] = ResponseParam{Name:"id", Value:id}
-  parseResponseTo(response, "OK", params)
+  id,error := theUser.Save()
+  if error != nil {
+    returnError(response, error)
+  } else {
+    parseResponseTo(response, "OK", map[string]interface{}{"id":id})
+  }
 }
 
 func Login(response http.ResponseWriter, request *http.Request) {
-  login, error := parseLogin(request)
+  credentials, error := parseCredentials(request)
   if error != nil {
     returnError(response, error)
     return
   }
-  user := user.FindBy(login.Login,login.Password)
+  user := user.Login(credentials.Login,credentials.Password)
   if user != nil {
     userData := map[string]interface{}{"login":user.Email}
-    params := make([]ResponseParam,1)
-    params[0] = ResponseParam{Name:"token", Value:crypto.CreateToken(userData)}
-    parseResponseTo(response, "OK",params)
+    parseResponseTo(response, "OK",map[string]interface{}{"token":crypto.CreateToken(userData)})
   } else {
-    parseResponseTo(response, "ERROR",nil)
+    returnError(response,nil)
   }
 }
 
@@ -41,13 +42,11 @@ func parseUser(request *http.Request)(*user.User, error){
   return theUser, getEntity(request, theUser)
 }
 
-func parseLogin(request *http.Request)(*user.Login, error){
-    login := new(user.Login)
-    return login, getEntity(request, login)
+func parseCredentials(request *http.Request)(*user.Credentials, error){
+    credentials := new(user.Credentials)
+    return credentials, getEntity(request, credentials)
 }
 
 func returnError(response http.ResponseWriter, error error){
-  params := make([]ResponseParam,1)
-  params[0] = ResponseParam{Name:"error", Value:error.Error()}
-  parseResponseTo(response, "ERROR", params)
+  parseResponseTo(response, "ERROR", map[string]interface{}{"error":error.Error()})
 }
