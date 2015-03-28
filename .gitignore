@@ -2,3 +2,5 @@
 *.iml
 server/wellcraftedprojects
 node_modules
+js/app.js
+js/lib/
