@@ -4,8 +4,14 @@
   "description": "Find a well crafted project in every language or framework. Learn from others' work",
   "author": "wellcraftedprojects.com",
   "contributors": [
-    {"name":"Iris Carballo","email":"iriscarballo@gmail.com"},
-    {"name":"Jesus J. Ballano","email":"jjballano@gmail.com"}
+    {
+      "name": "Iris Carballo",
+      "email": "iriscarballo@gmail.com"
+    },
+    {
+      "name": "Jesus J. Ballano",
+      "email": "jjballano@gmail.com"
+    }
   ],
   "repository": {
     "type": "git",
@@ -13,6 +19,11 @@
   },
   "dependencies": {
     "backbone": "^1.1.2",
-    "underscore": "^1.8.2"
+    "underscore": "^1.8.2",
+    "requirejs": "2.1.16"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2"
   }
 }
