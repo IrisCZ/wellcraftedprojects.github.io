@@ -7,12 +7,17 @@
 	<meta name="description" content="Software Projects Well Crafted">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/vendor/normalize.css">
+  <link rel="stylesheet" href="css/vendor/normalize.css">
 	
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="stylesheet" href="http://tympanus.net/Development/ButtonStylesInspiration/css/buttons.css">
+  <link rel="stylesheet" href="css/vendor/font-awesome.min.css"/>
 	
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+
+  <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="js/vendor/jquery-1.10.2.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
 </head>
 <body data-spy="scroll" data-target="#my-navbar">
 	  <nav class="navbar navbar navbar-fixed-top" id="my-navbar">
@@ -35,7 +40,7 @@
   						</button>
   					</li>	
   					<li>
-						<button class="button button--itzel button--text-thick">
+						<button class="button button--itzel button--text-thick" id='modal-launcher' data-toggle="modal" data-target="#login-modal">
   							<i class="button__icon icon icon-login"></i>
   							<span>LOG-IN</span>
   						</button>
@@ -135,6 +140,59 @@
         </section>
       </article>
     </div>
+
+<!-- modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-container">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <div class="modal-content">
+              <div class="modal-header login_modal_header">
+                <div class="modal-title" id="myModalLabel"><img class="logo-modal" src="images/logo-wcp2.png"></div>
+              </div>
+              <div class="modal-body login-modal">
+                <div class="clearfix"></div>
+                <div id='social-icons-conatainer'>
+                  <div class='modal-body-left'>
+                    <div class="form-group">
+                          <input type="text" id="username" placeholder="Enter your name" value="" class="form-control login-field">
+                          <i class="fa fa-user login-field-icon"></i>
+                      </div>
+
+                      <div class="form-group">
+                          <input type="password" id="login-pass" placeholder="Password" value="" class="form-control login-field">
+                          <i class="fa fa-lock login-field-icon"></i>
+                      </div>
+
+                      <a href="#" class="btn btn-success modal-login-btn">Login</a>
+                      <div class="remember">
+                        <input id="rememberme" type="checkbox" class="checkbox" /> 
+                        <label for="rememberme">Remember me</label>
+                      </div>
+                      <a href="#" class="login-link text-center">Lost your password?</a>
+                  </div>
+
+                  <div class='modal-body-right'>
+                    <div class="modal-social-icons">
+                      <a href='#' class="btn btn-default facebook"> <i class="fa fa-facebook modal-icons"></i> Sign In with BitBucket </a>
+                      <a href='#' class="btn btn-default twitter"> <i class="fa fa-twitter modal-icons"></i> Sign In with GitHub </a>
+                    </div> 
+                  </div>  
+                  <div id='center-line'> OR </div>
+                </div>                                                        
+                <div class="clearfix"></div>
+
+                <div class="form-group modal-register-btn">
+                  <button class="btn btn-default"> New User Please Register</button>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="modal-footer login_modal_footer">
+              </div>
+            </div>
+          </div>
+        </div>
+
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
