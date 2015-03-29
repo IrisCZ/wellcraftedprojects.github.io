@@ -146,61 +146,80 @@ article{
 }
 
 /*modal*/
+
+
+@media (min-width: 768px){
+    .modal-dialog {
+      width: 730px;
+      margin: 60px auto;
+    }
+}
+
 .modal-container{
     width: 100%;
     background-color: #fff;
 }
 .modal-content{
-    width: 80%;
     margin: 0 auto;
-    background-color: #c2b996;
     border-radius: 0;
     box-shadow: none;
     border: none;
+    padding: 0 62px;
 }
 
-.close{
-  margin: 5px;
-}
-
-.login_modal_header {
-  top: 6px;
+.modal-header,
+.modal-footer {
   height: 70px;
-  background: #fff;
-  position: absolute;
-  width: 100%;
+  text-align:center;
+  background-color: #c2b996;
+  padding:0;
 }
-.logo-modal{
+
+.modal-body {
+  padding:0;
+}
+
+.modal-header {
+  padding-top: 8px;
+  border-bottom: 0;
+}
+
+.modal-header-content,
+.modal-footer-content {
+  height: 100%;
+  background-color:#fff;
+  width:100%;
+}
+
+.modal-footer {
+  padding-bottom: 8px;
+  border-top: 0;
+}
+
+.modal-header .logo{
   height: 40px;
 }
-.login-modal{
-  top: 60px;
-  width:100%;
-  padding-bottom:20px;
-}
-#center-line{
+
+.modal .separator{
   position: absolute;  
-  right: 213px;
-  top: 36px;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   font-size: 0.7em;
   font-weight: 900;
   background:#ffd52b;  
   border: 4px solid #ffd52b;
   border-radius: 20px;
 }
-.login_modal_footer{
-  bottom: 6px;
-  height: 70px;
-  background: #fff;
-  position: absolute;
+
+.modal-margin{
+  height: 8px;
+  background-color: #c2b996;
   width: 100%;
-
 }
 
-
-.login_modal_header .modal-title {
-  text-align: center;
-}
 
 .form-group{
   position: relative;
@@ -222,7 +241,7 @@ article{
 }
 .modal-body-right{
   float:right; 
-  width:47%;
+  width:50%;
 }
 
 .modal-login-btn,
@@ -247,7 +266,8 @@ article{
   margin: 4% 33% 2% 33% ;
   width:100%;
 }
-.login-modal input{
+
+.modal-body .form-group input{
   height:40px; 
   box-shadow: none; 
   border:1px solid #ddd;
@@ -289,8 +309,9 @@ article{
   border: 2px solid #007bb6; 
   color:#fff;
 }
-#social-icons-conatainer{
+#social-icons-container{
   position: relative;
+  background-color: #c2b996;
 }
 
 

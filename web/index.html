@@ -141,18 +141,37 @@
       </article>
     </div>
 
+      <!--<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+          <!--<div class="modal-dialog">-->
+              <!--<div class="modal-content">-->
+                  <!--<div class="modal-header">-->
+                      <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                      <!--<div class="modal-title" id="myModalLabel"><img class="logo-modal" src="images/logo-wcp2.png"></div>-->
+                  <!--</div>-->
+                  <!--<div class="modal-body">-->
+                      <!--hola-->
+                  <!--</div>-->
+                  <!--<div class="modal-footer">-->
+                      <!--<a href="#" class="login-link text-center">Lost your password?</a>-->
+                  <!--</div>-->
+              <!--</div>-->
+          <!--</div>-->
+      <!--</div>-->
+
+
 <!-- modal -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-container">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <div class="modal-content">
-              <div class="modal-header login_modal_header">
-                <div class="modal-title" id="myModalLabel"><img class="logo-modal" src="images/logo-wcp2.png"></div>
+              <div class="modal-header">
+                <!--<div class="modal-margin"></div>-->
+                <div class="modal-header-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <img class="logo" src="images/logo-wcp2.png">
+                </div>
               </div>
-              <div class="modal-body login-modal">
-                <div class="clearfix"></div>
-                <div id='social-icons-conatainer'>
+              <div class="modal-body">
+                <div id='social-icons-container'>
                   <div class='modal-body-left'>
                     <div class="form-group">
                           <input type="text" id="username" placeholder="Enter your name" value="" class="form-control login-field">
@@ -164,35 +183,35 @@
                           <i class="fa fa-lock login-field-icon"></i>
                       </div>
 
-                      <a href="#" class="btn btn-success modal-login-btn">Login</a>
+                      <div class="form-group">
+                          <a href="#" class="btn btn-success modal-login-btn">Login</a>
+                      </div>
+
                       <div class="remember">
-                        <input id="rememberme" type="checkbox" class="checkbox" /> 
+                        <input id="rememberme" type="checkbox" class="checkbox" />
                         <label for="rememberme">Remember me</label>
                       </div>
-                      <a href="#" class="login-link text-center">Lost your password?</a>
+                      <div class="clearfix"></div>
                   </div>
-
+                  <div class="separator"> OR </div>
                   <div class='modal-body-right'>
                     <div class="modal-social-icons">
                       <a href='#' class="btn btn-default facebook"> <i class="fa fa-facebook modal-icons"></i> Sign In with BitBucket </a>
                       <a href='#' class="btn btn-default twitter"> <i class="fa fa-twitter modal-icons"></i> Sign In with GitHub </a>
-                    </div> 
-                  </div>  
-                  <div id='center-line'> OR </div>
-                </div>                                                        
-                <div class="clearfix"></div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
 
-                <div class="form-group modal-register-btn">
-                  <button class="btn btn-default"> New User Please Register</button>
                 </div>
               </div>
-              <div class="clearfix"></div>
-              <div class="modal-footer login_modal_footer">
+              <div class="modal-footer">
+                  <div class="modal-footer-content">
+                      <a href="#" class="login-link text-center">Lost your password?</a>
+                  </div>
               </div>
             </div>
-          </div>
         </div>
-
+</div>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="js/lib/libs.js"></script>
