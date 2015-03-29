@@ -225,19 +225,22 @@ article{
   width:47%;
 }
 
-.modal-login-btn{
+.modal-login-btn,
+.modal-login-btn:visited,
+.modal-login-btn:active,
+.modal-login-btn:link{
   width:100%;
-  height:40px; 
-  margin-bottom:25px;
+  height:40px;
   background-image: linear-gradient(to bottom,#ffd52b 0,#d9af07 100%);
+  background-position: top;
   background-color: #ffd52b;
   border-color: #d9af07;
 }
 
 .modal-login-btn:hover{
-  background-color: #ffd52b;
+  background-image: linear-gradient(to top,#ffd52b 0,#d9af07 100%);
+  background-position: top;
   border-color: #d9af07;
-  
 }
 
 .modal-register-btn{
