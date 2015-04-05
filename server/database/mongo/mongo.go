@@ -2,7 +2,7 @@ package mongo
 
 import (
     "gopkg.in/mgo.v2"
-    "github.com/jjballano/wellcraftedprojects/model"
+    "github.com/IrisCZ/wellcraftedprojects/model"
     "gopkg.in/mgo.v2/bson"
     "fmt"
 )

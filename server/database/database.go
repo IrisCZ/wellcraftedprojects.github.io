@@ -1,6 +1,6 @@
 package database
 
-import "github.com/jjballano/wellcraftedprojects/model"
+import "github.com/IrisCZ/wellcraftedprojects/model"
 
 type Database interface{
   Save(obj model.Model, collectionName string) (string, error)

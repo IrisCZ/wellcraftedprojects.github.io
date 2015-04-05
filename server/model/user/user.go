@@ -1,8 +1,8 @@
 package user
 
 import (
-  "github.com/jjballano/wellcraftedprojects/database"
-  "github.com/jjballano/wellcraftedprojects/crypto"
+  "github.com/IrisCZ/wellcraftedprojects/database"
+  "github.com/IrisCZ/wellcraftedprojects/crypto"
   "gopkg.in/mgo.v2/bson"
   "net/http"
   "io/ioutil"

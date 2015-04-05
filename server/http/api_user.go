@@ -2,8 +2,8 @@ package http
 
 import (
   "net/http"
-  "github.com/jjballano/wellcraftedprojects/model/user"
-  "github.com/jjballano/wellcraftedprojects/crypto"
+  "github.com/IrisCZ/wellcraftedprojects/model/user"
+  "github.com/IrisCZ/wellcraftedprojects/crypto"
 )
 
 func NewUser(response http.ResponseWriter, request *http.Request) {

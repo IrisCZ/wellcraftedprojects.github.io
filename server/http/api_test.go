@@ -3,10 +3,10 @@ package http
 
 import (
   "testing"
-  "github.com/jjballano/wellcraftedprojects/database/mongo"
-  "github.com/jjballano/wellcraftedprojects/model/user"
-  "github.com/jjballano/wellcraftedprojects/model"
-  "github.com/jjballano/wellcraftedprojects/crypto"
+  "github.com/IrisCZ/wellcraftedprojects/database/mongo"
+  "github.com/IrisCZ/wellcraftedprojects/model/user"
+  "github.com/IrisCZ/wellcraftedprojects/model"
+  "github.com/IrisCZ/wellcraftedprojects/crypto"
   "os"
   "net/http"
   "net/http/httptest"

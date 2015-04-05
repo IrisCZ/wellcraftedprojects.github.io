@@ -1,9 +1,9 @@
 package main
 
 import (
-  "github.com/jjballano/wellcraftedprojects/http"
-  "github.com/jjballano/wellcraftedprojects/database/mongo"
-  "github.com/jjballano/wellcraftedprojects/model/user"
+  "github.com/IrisCZ/wellcraftedprojects/http"
+  "github.com/IrisCZ/wellcraftedprojects/database/mongo"
+  "github.com/IrisCZ/wellcraftedprojects/model/user"
     "os"
 )
 
