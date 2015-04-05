@@ -1,12 +1,12 @@
 var gulp = require('gulp');
-var concat = require('gulp-concat');
+var concat = require('gulp-concat')
+var watch = require('gulp-watch');
 
 gulp.task('default', function() {
 
 });
 
 var dependencies = [
-//  'node_modules/requirejs/require.js',
   'node_modules/jquery/dist/jquery.min.js',
   'node_modules/underscore/underscore-min.js',
   'node_modules/backbone/backbone-min.js'
@@ -14,7 +14,6 @@ var dependencies = [
 
 var sources = [
   'js/router.js',
-//  'js/app.js',
   'js/views/*.js'
 ]
 
@@ -25,7 +24,9 @@ gulp.task('build-dependencies', function() {
 });
 
 gulp.task('build-js', function() {
-  return gulp.src(sources)
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest('./js/'));
+  watch('js/views/**/*.js', function(){
+    return gulp.src(sources)
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('./js/'));
+  });
 });
