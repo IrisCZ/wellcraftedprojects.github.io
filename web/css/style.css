@@ -67,18 +67,20 @@ a, a:active,a:visited,a:hover, a:link {
   border: 3px solid #ffd52b;
   padding: 5px;
   margin: 5px 10px;
-
 }
+
 .button-tag-disable{
-  width: 90%;
-  border: 1px solid #777;
+  width: 80%;
   padding: 5px;
   margin: 5px 10px;
+  border: 2px solid #c2b996;
   display: inline-block;
-
 }
 
-
+aside .input-close{
+  display: inline-block;
+  padding: 10px;
+}
 .button__icon.icon.icon-info{
 	background-image: url(../images/icon-info.png);
 	background-size: 30px 30px;
