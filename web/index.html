@@ -51,6 +51,12 @@
   	</nav>
   	<aside class="col-sm-2 aside">
       <input type="text" class="button-tag" id="tag" placeholder="Add Filter">
+      <input type="text" class="button-tag-disable" id="tag" placeholder="Filter added">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <input type="text" class="button-tag-disable" id="tag" placeholder="Filter added">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+
   	</aside>
 
     <div role="main" class="col-sm-10 main">
@@ -141,32 +147,13 @@
       </article>
     </div>
 
-      <!--<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
-          <!--<div class="modal-dialog">-->
-              <!--<div class="modal-content">-->
-                  <!--<div class="modal-header">-->
-                      <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                      <!--<div class="modal-title" id="myModalLabel"><img class="logo-modal" src="images/logo-wcp2.png"></div>-->
-                  <!--</div>-->
-                  <!--<div class="modal-body">-->
-                      <!--hola-->
-                  <!--</div>-->
-                  <!--<div class="modal-footer">-->
-                      <!--<a href="#" class="login-link text-center">Lost your password?</a>-->
-                  <!--</div>-->
-              <!--</div>-->
-          <!--</div>-->
-      <!--</div>-->
-
-
 <!-- modal -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <div class="modal-header">
-                <!--<div class="modal-margin"></div>-->
                 <div class="modal-header-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <img class="logo" src="images/logo-wcp2.png">
                 </div>
               </div>
@@ -189,15 +176,24 @@
 
                       <div class="remember">
                         <input id="rememberme" type="checkbox" class="checkbox" />
-                        <label for="rememberme">Remember me</label>
+                        <label for="rememberme" class="rememberme-text">Remember me</label>
                       </div>
                       <div class="clearfix"></div>
                   </div>
-                  <div class="separator"> OR </div>
+                  <div class="separator-line">
+                    <div class="separator"> OR </div>
+                  </div>
                   <div class='modal-body-right'>
                     <div class="modal-social-icons">
-                      <a href='#' class="btn btn-default facebook"> <i class="fa fa-facebook modal-icons"></i> Sign In with BitBucket </a>
-                      <a href='#' class="btn btn-default twitter"> <i class="fa fa-twitter modal-icons"></i> Sign In with GitHub </a>
+                      <a href='#' class="btn btn-default bitbucket"> <i class="fa fa-bitbucket modal-icons"></i> Sign In with BitBucket </a>
+                      <a href='#' class="btn btn-default github"> <i class="fa fa-github modal-icons"></i> Sign In with GitHub </a>
+                      <div class="form-group form-right">
+                          <i class="fa fa-envelope mail-icon"></i>
+                          <input type="text" id="email" placeholder="Sing In with mail" value="" class="form-control login-field field-envelope">
+                          <input type="text" id="username" placeholder="Enter your name" value="" class="form-control login-field">
+                          <input type="password" id="login-pass" placeholder="Password" value="" class="form-control login-field">
+
+                      </div>
                     </div>
                   </div>
                   <div class="clearfix"></div>
@@ -206,7 +202,7 @@
               </div>
               <div class="modal-footer">
                   <div class="modal-footer-content">
-                      <a href="#" class="login-link text-center">Lost your password?</a>
+                      <a href="#" class="login-link text-center">Forgot your password?</a>
                   </div>
               </div>
             </div>
