@@ -1,6 +1,6 @@
-var Router = Backbone.Router.extend({
+Router = Backbone.Router.extend({
   routes: {
-    '/': 'home'
+    '*actions': 'home'
   },
 
   initialize: function() {
@@ -8,7 +8,8 @@ var Router = Backbone.Router.extend({
   },
 
   home: function(){
-//    var view = new ProjectListView();
-//    view.render();
+    var view = new ProjectListView();
   }
 });
+
+var router = new Router();

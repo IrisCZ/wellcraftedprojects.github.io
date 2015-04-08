@@ -1,10 +1,11 @@
 package http
 
 import (
-    "fmt"
-    "github.com/gorilla/mux"
-    "net/http"
-    "encoding/json"
+  "fmt"
+  "github.com/gorilla/mux"
+  "net/http"
+  "github.com/IrisCZ/wellcraftedprojects/http/user"
+  "github.com/IrisCZ/wellcraftedprojects/http/project"
 )
 
 func notFound(response http.ResponseWriter, request *http.Request) {
@@ -13,20 +14,29 @@ func notFound(response http.ResponseWriter, request *http.Request) {
 
 func StartApi(port string) {
   router := mux.NewRouter()
-  router.HandleFunc("/user/new", NewUser).Methods("POST")
-  router.HandleFunc("/login", Login).Methods("POST")
+  router.HandleFunc("/user/new", user.New).Methods("POST")
+  router.HandleFunc("/login", user.Login).Methods("POST")
+  router.HandleFunc("/projects", project.List).Methods("GET")
   router.HandleFunc("/", notFound)
-  http.Handle("/", router)
+  http.Handle("/", &CORS{router})
   http.ListenAndServe(":"+port, nil)
 }
 
-func getEntity(r *http.Request, v Entity) error {
-    return v.UnmarshalHTTP(r)
+type CORS struct {
+  router *mux.Router
 }
 
-func parseResponseTo(response http.ResponseWriter, result string, params map[string]interface{}){
-    params["Result"] = result
-    resultJson, _ := json.Marshal(params)
 
-    fmt.Fprintf(response, string(resultJson))
+func (s *CORS) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+    if origin := req.Header.Get("Origin"); origin != "" {
+        rw.Header().Set("Access-Control-Allow-Origin", origin)
+        rw.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+        rw.Header().Set("Access-Control-Allow-Headers",
+        "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+    }
+    // Stop here if its Preflighted OPTIONS request
+    if req.Method == "OPTIONS" {
+        return
+    }
+    s.router.ServeHTTP(rw, req)
 }

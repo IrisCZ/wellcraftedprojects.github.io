@@ -1,4 +1,4 @@
-package http
+package user
 
 
 import (
@@ -40,9 +40,13 @@ func (mongo MongoMock) FindOne(collectionName string, params map[string]string, 
   return nil
 }
 
+func (mongo MongoMock) FindAll(collectionName string) ([]map[string]interface{}, error) {
+  return nil,nil
+}
+
 var handler = func(response http.ResponseWriter, request *http.Request) {
   if(request.URL.String() == "/user/new"){
-    NewUser(response,request)
+    New(response,request)
   }
   if(request.URL.String() == "/user/login"){
     Login(response,request)

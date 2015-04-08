@@ -44,14 +44,14 @@ func (user *User) SetId(id bson.ObjectId){
 }
 
 func FindBy(email string) *User {
-    params := make(map[string]string)
-    params["email"] = email
-    user := new(User)
-    error := db.FindOne(collectionName, params, user)
-    if error != nil {
-        return nil
-    }
-    return user
+  params := make(map[string]string)
+  params["email"] = email
+  user := new(User)
+  error := db.FindOne(collectionName, params, user)
+  if error != nil {
+    return nil
+  }
+  return user
 }
 
 func Login(email string, password string) *User {
@@ -77,14 +77,14 @@ func (user *User) UnmarshalHTTP(request *http.Request) error {
 }
 
 func (credentials *Credentials) UnmarshalHTTP(request *http.Request) error {
-    defer request.Body.Close()
-    bodySave, _ := ioutil.ReadAll(request.Body)
-    error := json.Unmarshal(bodySave, credentials)
-    if error != nil{
-        return error
-    }
-    if len(credentials.Login) < 1 || len(credentials.Password) < 1 {
-        return errors.New("Login and password are mandatory")
-    }
-    return nil
+  defer request.Body.Close()
+  bodySave, _ := ioutil.ReadAll(request.Body)
+  error := json.Unmarshal(bodySave, credentials)
+  if error != nil{
+    return error
+  }
+  if len(credentials.Login) < 1 || len(credentials.Password) < 1 {
+    return errors.New("Login and password are mandatory")
+  }
+  return nil
 }

@@ -4,7 +4,8 @@ import (
   "github.com/IrisCZ/wellcraftedprojects/http"
   "github.com/IrisCZ/wellcraftedprojects/database/mongo"
   "github.com/IrisCZ/wellcraftedprojects/model/user"
-    "os"
+  "github.com/IrisCZ/wellcraftedprojects/model/project"
+  "os"
 )
 
 func main() {
@@ -12,6 +13,7 @@ func main() {
     mongo.Init("localhost","wellcrafted")
 
     user.Init(new (mongo.Mongo))
+    project.Init(new (mongo.Mongo))
 
     port := os.Getenv("PORT")
     if len(port) < 1 {
