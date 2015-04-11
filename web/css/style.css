@@ -1,13 +1,7 @@
 body{
 	padding-top: 40px;
 	font-family: avian, verdana;
- /*   scrollbar-face-color: #000000;  
-    scrollbar-shadow-color: #2D2C4D;  
-    scrollbar-highlight-color:#7D7E94;  
-    scrollbar-3dlight-color: #7D7E94;  
-    scrollbar-darkshadow-color: #2D2C4D;  
-    scrollbar-track-color: #7D7E94;  
-    scrollbar-arrow-color: #C1C1D1;  */ 
+
 }
 a, a:active,a:visited,a:hover, a:link {
   text-decoration: none;
@@ -102,16 +96,6 @@ overflow-y:scroll;
   padding: 5px;
   margin: 5px 10px;
 }
-
-/*.button-tag-disable{
-  width: 90%;
-  padding: 5px;
-  margin: 5px 10px;
-  border: 2px solid #c2b996;
-  display: inline-block;
-  background-color: #c2b996;
-  color: #fff;
-}*/
 
 ul {
   list-style: none;
@@ -250,7 +234,8 @@ article{
   padding-top: 5px;
 }
 .votes-text{
-  padding-top: 12px;
+  padding-top: 14px;
+  color: #000;
 }
 .positive-votes{
   width: 40px;
@@ -341,8 +326,22 @@ article{
   color: #c2b996;
 }
 
-.checkbox{
-  display: inline-block;
+input[type="checkbox"]{ 
+  display: none; 
+}
+ 
+input[type="checkbox"] + label span{
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    background: url(../images/check_radio_sheet.png) left top no-repeat;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    cursor:pointer;
+}
+ 
+input[type="checkbox"]:checked + label span{
+    background: url(../images/check_radio_sheet.png) -19px top no-repeat;
 }
 
 .remember{
@@ -473,6 +472,41 @@ article{
   height:40px; 
   box-shadow: none; 
   border:1px solid #ddd;
+}
+
+/*modal newproject*/
+.modal-body-newproject{
+  padding:1em;
+  background-color: #c2b996;
+
+}
+.newproject-body{
+  margin-top: 5px;
+  font-size: 0.8em;
+}
+.newproject-field1{
+}
+
+.newproject-field{
+  padding-left: 2em;
+  margin-bottom: 1em;
+
+}
+.newproject-photo{
+
+}
+
+.newproject-photo .newproject-photo-field{
+}
+
+.newproject-field2{
+
+}
+
+.newproject-field-icon{
+  position: absolute;
+  left: 20px;
+  top: 10px;
 }
 
 h1{
