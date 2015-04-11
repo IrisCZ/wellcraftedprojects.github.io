@@ -5,7 +5,6 @@ import (
   "github.com/IrisCZ/wellcraftedprojects/model/project"
   "github.com/IrisCZ/wellcraftedprojects/http/utils"
   "encoding/json"
-    "fmt"
 )
 
 func List(response http.ResponseWriter, request *http.Request){
@@ -24,15 +23,26 @@ func List(response http.ResponseWriter, request *http.Request){
 }
 
 func New(response http.ResponseWriter, request *http.Request){
-  fmt.Println("LLEGAAA")
+  theProject,error := parseProject(request)
+  if error != nil {
+    returnError(response, error)
+    return
+  }
 
-    theProject,_ := parseProject(request)
-    aa,_ := json.Marshal(theProject)
-    fmt.Println("VALOR", string(aa ))
+  id,error := theProject.Save()
+  if error != nil {
+    returnError(response, error)
+  } else {
+    utils.ParseResponseTo(response, "OK", map[string]interface{}{"id":id})
+  }
 }
 
 
 func parseProject(request *http.Request)(*project.Project, error){
   theProject := new(project.Project)
   return theProject, utils.GetEntity(request, theProject)
+}
+
+func returnError(response http.ResponseWriter, error error){
+    utils.ParseResponseTo(response, "", map[string]interface{}{"error":error.Error()})
 }
