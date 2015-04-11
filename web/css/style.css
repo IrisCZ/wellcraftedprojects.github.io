@@ -12,6 +12,37 @@ body{
 a, a:active,a:visited,a:hover, a:link {
   text-decoration: none;
 }
+/*scrollbar*/
+.scrollbar{
+
+height:466px;
+background-color:#fff;
+margin: 0;
+overflow-y:scroll;
+}
+
+ 
+#css_version::-webkit-scrollbar {
+    width: 11px;
+}
+ 
+#css_version::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+}
+ 
+#css_version::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+    background: rgba(181,173,140,0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+#css_version::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,204,0,1);
+}
+
+
 
 .logo-head {
 	width: 70%;
@@ -26,7 +57,10 @@ a, a:active,a:visited,a:hover, a:link {
 .navbar{
   margin-bottom: 0;
   background-color: #fff;
-  height: 75px;
+  height: 66px;
+}
+.navbar-brand{
+  padding: 10px 15px;
 }
 .button {
   float: left;
@@ -59,8 +93,8 @@ a, a:active,a:visited,a:hover, a:link {
 
 .aside {
   position: fixed;
-  top: 78px;
-  z-index: 1999;
+  top: 61px;
+  z-index: 1031;
 }
 .button-tag{
   width: 90%;
@@ -69,38 +103,115 @@ a, a:active,a:visited,a:hover, a:link {
   margin: 5px 10px;
 }
 
-.button-tag-disable{
-  width: 80%;
+/*.button-tag-disable{
+  width: 90%;
   padding: 5px;
   margin: 5px 10px;
   border: 2px solid #c2b996;
   display: inline-block;
+  background-color: #c2b996;
+  color: #fff;
+}*/
+
+ul {
+  list-style: none;
+  padding: 0 5px;
 }
+ul li {
+  padding: 0.2em;
+}
+
+label.styled {
+  background-color: #c2b996;
+  display: block;
+  width: 300px;
+  text-align: center;
+  padding: 0.4em 1.5em 0.4em 2.5em;
+  color: #fff;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+label.styled:before {
+  content: '✖';
+  font-size: 25px;
+  color: #fff;
+  width:30px;
+  height:100%; 
+  background-color: #ffd52b;
+  position: absolute;
+  top:0;
+  left:100%;
+  transition: all 0.4s ease;
+  opacity: 0;
+  border-right: 2px solid #fff;
+}
+label.styled:hover:before {
+  left: 98%;
+  opacity: .3;
+}
+input.styled {
+  display: none;
+}
+
+/* :: CHECKED :: */
+input.styled:checked ~ label.styled {
+  background-color: #c2b996;
+  animation: throw 0.5s linear;
+}
+input.styled:checked ~ label.styled:before {
+  left:0px;
+  opacity: 1;
+}
+@keyframes throw {
+   0%,63% {margin-left: 0;}
+   64% {margin-left: -5px;}
+   100% {margin-left: 0;}
+}
+
+
 
 aside .input-close{
   display: inline-block;
-  padding: 10px;
+  position: relative;
+  color: #fff;
+  right: 5px;
+  top: 0;
+}
+.button--itzel span{
+  padding: 15px;
+}
+.button__icon.icon.icon-login{
+  background-image: url(../images/icon-login.png);
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  left: 52%;
 }
 .button__icon.icon.icon-info{
 	background-image: url(../images/icon-info.png);
 	background-size: 30px 30px;
 	background-repeat: no-repeat;
+  left: 53%;
 }
 
-.button__icon.icon.icon-login{
-	background-image: url(../images/icon-login.png);
-	background-size: 30px 30px;
-	background-repeat: no-repeat;
+.button__icon.icon.icon-new{
+  background-image: url(../images/icon-new.png);
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  left: 53%;
 }
+
 article{
   border-bottom: 2px solid #fff;
   height: 110px;
 }
+
 .main{
   background-color: #A19974;
   float: left;
   left: 16.3%;
-  top: 38px;
+  top: 26px;
   position: relative;
   padding: 0;
 }
@@ -172,7 +283,8 @@ article{
 }
 .close{
   position: absolute;
-  right: 5px;
+  right: 10px;
+  top: 5px;
   color: #c2b996;
   opacity: 1;
 }
