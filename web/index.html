@@ -40,13 +40,13 @@
   						</button>
   					</li>	
   					<li>
-						<button class="button button--itzel button--text-thick" id='modal-launcher' data-toggle="modal" data-target="#login-modal">
+						  <button class="button button--itzel button--text-thick" id='modal-launcher' data-toggle="modal" data-target="#login-modal">
   							<i class="button__icon icon icon-login"></i>
   							<span>LOG-IN</span>
   						</button>
   					</li>
             <li>
-              <button class="button button--itzel button--text-thick">
+              <button class="button button--itzel button--text-thick" id='modal-launcher' data-toggle="modal" data-target="#newproject-modal">
                 <i class="button__icon icon icon-new"></i>
                 <span>NEW PROJECT</span>
               </button>
@@ -57,13 +57,6 @@
   	</nav>
   	<aside class="col-sm-2 aside">
       <input type="text" class="button-tag" id="tag" placeholder="Add Filter">
-     <!--  <div class="button-tag-disable" id="tag">Filter added
-        <button type="button" class="close input-close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      </div>
-      <div class="button-tag-disable" id="tag">Filter added
-        <button type="button" class="close input-close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      </div>
-  	 -->
       <ul>
         <li>
           <input type="checkbox" class="styled" id="b_1">
@@ -85,92 +78,7 @@
     
     <div class="scrollbar" id="css_version">
 
-      <div role="main" class="col-sm-10 main scroll-content">
-      	<article>
-      		<section class:"project1">
-            <div class="col-sm-2 image-project">
-             <img src="images/runu.png" class="img-responsive" alt="image">
-            </div>          
-            <div class="col-sm-9 info-project">
-              <p class="author">Author´s Name</p>
-              <p class="projects">Project´s decription. Project´s decription. Project´s decription.</p>
-              <a href="" class="link">https://github.com/runu/runu.github.io</a>
-            </div>
-            <div class="col-sm-1 votes-project">
-               <div class="positive-votes"><p class="votes-text">5</p></div>
-               <div class="negative-votes"><p class="votes-text">2</p></div>
-            </div>
-      		</section>
-      	</article>
-        
-        <article>
-          <section class:"project2">
-            <div class="col-sm-2 image-project">
-             <img src="images/new-project.jpg" class="img-responsive" alt="image">
-            </div>          
-            <div class="col-sm-9 info-project">
-              <p class="author">Author´s Name</p>
-              <p class="projects">Project´s decription. Project´s decription. Project´s decription.</p>
-              <a class="link">https://github.com/runu/runu.github.io</a>
-            </div>
-            <div class="col-sm-1 votes-project">
-               <div class="positive-votes"><p class="votes-text">7</p></div>
-               <div class="negative-votes"><p class="votes-text">5</p></div>
-            </div>
-          </section>
-        </article>
-
-        <article>
-          <section class:"project2">
-            <div class="col-sm-2 image-project">
-             <img src="images/new-project.jpg" class="img-responsive" alt="image">
-            </div>          
-            <div class="col-sm-9 info-project">
-              <p class="author">Author´s Name</p>
-              <p class="projects">Project´s decription. Project´s decription. Project´s decription.</p>
-              <a class="link">https://github.com/runu/runu.github.io</a>
-            </div>
-            <div class="col-sm-1 votes-project">
-               <div class="positive-votes"><p class="votes-text">7</p></div>
-               <div class="negative-votes"><p class="votes-text">5</p></div>
-            </div>
-          </section>
-        </article>
-
-        <article>
-          <section class:"project2">
-            <div class="col-sm-2 image-project">
-             <img src="images/new-project.jpg" class="img-responsive" alt="image">
-            </div>          
-            <div class="col-sm-9 info-project">
-              <p class="author">Author´s Name</p>
-              <p class="projects">Project´s decription. Project´s decription. Project´s decription.</p>
-              <a class="link">https://github.com/runu/runu.github.io</a>
-            </div>
-            <div class="col-sm-1 votes-project">
-               <div class="positive-votes"><p class="votes-text">7</p></div>
-               <div class="negative-votes"><p class="votes-text">5</p></div>
-            </div>
-          </section>
-        </article>
-
-        <article>
-          <section class:"project2">
-            <div class="col-sm-2 image-project">
-             <img src="images/new-project.jpg" class="img-responsive" alt="image">
-            </div>          
-            <div class="col-sm-9 info-project">
-              <p class="author">Author´s Name</p>
-              <p class="projects">Project´s decription. Project´s decription. Project´s decription.</p>
-              <a class="link">https://github.com/runu/runu.github.io</a>
-            </div>
-            <div class="col-sm-1 votes-project">
-               <div class="positive-votes"><p class="votes-text">7</p></div>
-               <div class="negative-votes"><p class="votes-text">5</p></div>
-            </div>
-          </section>
-        </article>
-      </div>
+      <div id="projects_container" role="main" class="col-sm-10 main scroll-content"></div>
     </div>
 
 <!-- modal -->
@@ -202,7 +110,7 @@
 
                       <div class="remember">
                         <input id="rememberme" type="checkbox" class="checkbox" />
-                        <label for="rememberme" class="rememberme-text">Remember me</label>
+                        <label for="rememberme" class="rememberme-text"><span></span>Remember me</label>
                       </div>
                       <div class="clearfix"></div>
                   </div>
@@ -233,31 +141,95 @@
               </div>
             </div>
         </div>
-</div>
+    </div>
 
-<script type="text/template" id="project_template">
-  <% _.each(projects, function(project) { %>
-    <article>
-      <section>
-        <div class="col-sm-2 image-project">
-          <img src="<%= project.image %>" class="img-responsive" alt="image">
-        </div>
-        <div class="col-sm-9 info-project">
-          <p class="author"><%= project.author%></p>
-          <p class="projects"><%= project.description%></p>
-          <a href="" class="link"><%= project.url%></a>
-        </div>
-        <div class="col-sm-1 votes-project">
-          <div class="positive-votes"><p class="votes-text"><%= project.positives%></p></div>
-          <div class="negative-votes"><p class="votes-text"><%= project.negatives%></p></div>
-        </div>
-      </section>
-    </article>
-  <% }) %>
-</script>
+<!-- modal new project--> 
+    <div class="modal fade" id="newproject-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+            <div class="modal-header">
+              <div class="modal-header-content">
+                <img class="logo" src="images/logo-wcp2.png">
+              </div>
+          </div>
+
+          <div class="modal-body-newproject">
+           
+            <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-12 newproject-field1">
+                  <input type="text" id="projectname" placeholder="Enter your project´s Name" value="" class="form-control newproject-field">
+                  <i class="fa fa-paw  newproject-field-icon"></i>
+              </div>
+
+              
+              <div class="col-md-12 newproject-field1">
+                <input type="text" id="link" placeholder="Enter your project´s Link" value="" class="form-control newproject-field">
+                <i class="fa fa-file-code-o newproject-field-icon"></i>
+              </div>
+
+              <div class="col-md-12 newproject-field1">
+                <input type="text" id="author" placeholder="Enter author´s Name" value="" class="form-control newproject-field">
+                <i class="fa fa-user newproject-field-icon"></i>
+              </div>
+            </div>
+            </div>
+
+            <div class="col-md-3 newproject-photo">
+              <div id="photo" class="form-control newproject-photo-field">
+                <i class="fa fa-camera-retro newproject-field-icon"></i>
+              </div>
+            <div class="clearfix"></div>
+
+            </div>
+
+            <div class="col-md-12 newproject-field2">
+              <input type="text" id="tags" placeholder="Enter Tags" value="" class="form-control newproject-field">
+              <i class="fa fa-tags newproject-field-icon"></i>
+            </div>
+
+            <div class="col-md-12 newproject-field2">
+              <input type="text" id="description" placeholder="Enter Description" value="" class="form-control newproject-field">
+              <i class="fa fa-file-word-o newproject-field-icon"></i>
+            </div>
+
+            <div class="clearfix"></div>
+
+          </div>
+
+            <div class="modal-footer">
+              <div class="modal-footer-content">
+                <a href="#" class="login-link text-center"></a>
+              </div>
+            </div>
+      </div>
+    </div>
+
+    </div>
+    <script type="text/template" id="project_template">
+        <% _.each(projects, function(project) { %>
+        <article>
+            <section>
+                <div class="col-sm-2 image-project">
+                    <img src="<%= project.image %>" class="img-responsive" alt="image">
+                </div>
+                <div class="col-sm-9 info-project">
+                    <p class="author"><%= project.author%></p>
+                    <p class="projects"><%= project.description%></p>
+                    <a href="" class="link"><%= project.url%></a>
+                </div>
+                <div class="col-sm-1 votes-project">
+                    <div class="positive-votes"><p class="votes-text"><%= project.positives%></p></div>
+                    <div class="negative-votes"><p class="votes-text"><%= project.negatives%></p></div>
+                </div>
+            </section>
+        </article>
+        <% }) %>
+    </script>
+
+
     <script src="js/lib/libs.js"></script>
     <script src="js/app.js"></script>
 </body>
