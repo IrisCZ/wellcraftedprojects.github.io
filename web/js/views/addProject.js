@@ -12,7 +12,8 @@ AddProjectView = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.html(this.template({}));
+    this.$el.append(this.template({}));
+    this.modalWindow = this.$('#newproject')
     return this;
   },
 
@@ -22,6 +23,13 @@ AddProjectView = Backbone.View.extend({
     this.model.set('author', this.$('#new-author').val().trim());
     this.model.set('tags', this.$('#new-tags').val().trim());
     this.model.set('description', this.$('#new-description').val().trim());
-    this.model.save();
+    var self = this;
+    this.model.save(null, {
+      success: function(model, response){
+        model.clear().set(model.defaults);
+        self.modalWindow.modal('hide');
+        Backbone.trigger('project:created');
+      }
+    });
   }
 });
