@@ -1,7 +1,12 @@
 var Project = Backbone.Model.extend({
-  urlRoot: '/project',
+  urlRoot: 'http://localhost:1337/project',
   defaults: {
-    image: 'images/new-project.jpg'
+    image: 'images/new-project.jpg',
+    name:'',
+    description:'',
+    link:'',
+    author:'',
+    tags:''
   },
   initialize: function(){}
 });

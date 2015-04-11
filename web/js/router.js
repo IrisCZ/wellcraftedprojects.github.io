@@ -8,7 +8,7 @@ Router = Backbone.Router.extend({
   },
 
   home: function(){
-    var view = new ProjectListView();
+    new ProjectListView();
   }
 });
 

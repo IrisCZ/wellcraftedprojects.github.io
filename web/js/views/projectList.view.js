@@ -9,15 +9,16 @@ ProjectListView = Backbone.View.extend({
     this.projects.fetch({
       success: function(model, response) {
         collection.set(response.projects)
-
       }
     });
+    this.addProjectView = new AddProjectView({el:$('#newproject_container')});
   },
 
   template: _.template($('#project_template').html()),
 
   render: function(){
-    this.$el.html(this.template({projects:this.projects.toJSON()}))
+    this.$el.html(this.template({projects:this.projects.toJSON()}));
+    this.addProjectView.render();
   }
 
 });

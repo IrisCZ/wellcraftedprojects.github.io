@@ -17,6 +17,7 @@ func StartApi(port string) {
   router.HandleFunc("/user/new", user.New).Methods("POST")
   router.HandleFunc("/login", user.Login).Methods("POST")
   router.HandleFunc("/projects", project.List).Methods("GET")
+  router.HandleFunc("/project", project.New).Methods("POST")
   router.HandleFunc("/", notFound)
   http.Handle("/", &CORS{router})
   http.ListenAndServe(":"+port, nil)

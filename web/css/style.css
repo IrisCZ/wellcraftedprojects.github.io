@@ -315,12 +315,12 @@ article{
   padding: 20px;
 }
 
-.login-link, .login-link:visited, .login-link:active, .login-link:link{
+.modal-button, .modal-button:visited, .modal-button:active, .modal-button:link{
   color: #c2b996;
   margin: auto;
   padding:0 20%;
 }
-.login-link:hover{
+.modal-button:hover{
   text-decoration: none;
   font-weight: 900;
   color: #c2b996;
