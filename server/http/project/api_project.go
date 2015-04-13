@@ -38,9 +38,10 @@ func New(response http.ResponseWriter, request *http.Request){
 }
 
 
-func parseProject(request *http.Request)(*project.Project, error){
-  theProject := new(project.Project)
-  return theProject, utils.GetEntity(request, theProject)
+func parseProject(request *http.Request)(theProject *project.Project, error error){
+  theProject = new(project.Project)
+  error = utils.GetEntity(request, theProject)
+  return
 }
 
 func returnError(response http.ResponseWriter, error error){

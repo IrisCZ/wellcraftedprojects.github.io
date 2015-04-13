@@ -63,13 +63,12 @@ func FindAll() []Project {
 }
 
 
-func (project *Project) UnmarshalHTTP(request *http.Request) error {
+func (project *Project) UnmarshalHTTP(request *http.Request) (error error) {
     defer request.Body.Close()
     bodySave, _ := ioutil.ReadAll(request.Body)
     rawProject := new(RawProject)
-    error := json.Unmarshal(bodySave, rawProject)
-    if error != nil{
-        return error
+    if error = json.Unmarshal(bodySave, rawProject); error != nil{
+        return
     }
     *project = *rawProject.Project
 
