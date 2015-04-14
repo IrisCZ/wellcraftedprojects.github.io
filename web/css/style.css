@@ -116,6 +116,7 @@ label.styled {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  font-weight: 100;
 }
 label.styled:before {
   content: '✖';
@@ -130,6 +131,7 @@ label.styled:before {
   transition: all 0.4s ease;
   opacity: 0;
   border-right: 2px solid #fff;
+  font-weight: 100;
 }
 label.styled:hover:before {
   left: 98%;
@@ -234,7 +236,7 @@ article{
   padding-top: 5px;
 }
 .votes-text{
-  padding-top: 14px;
+  padding-top: 13px;
   color: #000;
 }
 .positive-votes{
