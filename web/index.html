@@ -140,7 +140,6 @@
     <div id="modals">
 
     </div>
-<!-- modal new project--> 
 
     <script type="text/template" id="project_template">
         <% _.each(projects, function(project) { %>
@@ -148,10 +147,12 @@
             <section>
                 <div class="col-sm-2 image-project">
                     <img src="<%= project.image %>" class="img-responsive" alt="image">
+                    <span class="newproject-text"> &lt;!-- <br> New Proyect <br> --&gt;</span>
                 </div>
                 <div class="col-sm-9 info-project">
-                    <p class="author"><%= project.author%></p>
+                    <p class="title"><%= project.name%></p>
                     <p class="projects"><%= project.description%></p>
+                    <p class="author"><%= project.author%></p>
                     <a href="" class="link"><%= project.url%></a>
                 </div>
                 <div class="col-sm-1 votes-project">
@@ -163,7 +164,9 @@
         <% }) %>
     </script>
 
-    <script type="text/template" id="new_project_template">
+<!-- modal new project-->
+
+      <script type="text/template" id="new_project_template">
       <div class="modal fade" id="newproject" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
