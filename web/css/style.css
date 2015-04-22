@@ -203,6 +203,8 @@ article{
 .img-responsive{
   margin: 0;
   height: 100%;
+  width: auto;
+  max-height: 7em;
 }
 .newproject-text{
   position: absolute;
@@ -505,11 +507,11 @@ input[type="checkbox"]:checked + label span{
   margin-bottom: 1em;
 
 }
-.newproject-photo{
+.new-logo{
 
 }
 
-.newproject-photo .newproject-photo-field{
+.new-logo .new-logo-field{
 }
 
 .newproject-field2{
@@ -520,6 +522,19 @@ input[type="checkbox"]:checked + label span{
   position: absolute;
   left: 20px;
   top: 10px;
+}
+
+#newproject #new-logo {
+  padding: 0;
+}
+
+#newproject #new-logo .imagePreview img{
+  width: 100%;
+  height: auto;
+}
+
+#new-logo .imagePreview p{
+  display: none;
 }
 
 h1{

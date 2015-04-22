@@ -2,10 +2,11 @@ AddProjectView = Backbone.View.extend({
 
   model: new Project(),
   template: _.template($('#new_project_template').html()),
-  container: $('#'),
 
   events: {
-    'click #newproject-save':'submit'
+    'click #newproject-save':'submit',
+    'click #new-logo':'openFileSelector',
+    'change #new-logo-input':'showPreview'
   },
 
   initialize: function(){
@@ -23,6 +24,7 @@ AddProjectView = Backbone.View.extend({
     this.model.set('author', this.$('#new-author').val().trim());
     this.model.set('tags', this.$('#new-tags').val().trim());
     this.model.set('description', this.$('#new-description').val().trim());
+    this.model.set('image', this.$('#new-logo .imagePreview img').attr('src'));
     var self = this;
     this.model.save(null, {
       success: function(model, response){
@@ -31,5 +33,13 @@ AddProjectView = Backbone.View.extend({
         Backbone.trigger('project:created');
       }
     });
+  },
+
+  openFileSelector: function(){
+    this.$('#new-logo-input').trigger("click");
+  },
+
+  showPreview: function(){
+    previewImage(this.$('#new-logo-input')[0],[1],4);
   }
 });
