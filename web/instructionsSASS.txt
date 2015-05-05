@@ -1,0 +1,3 @@
+
+cd C:\Users\Iris\Documents\GitHub\wellcraftedprojects.github.io\web\css
+sass --watch style2.sass:style2
