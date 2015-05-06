@@ -856,6 +856,30 @@ there.
 /* Larger than tablet */
 /* Larger than desktop */
 /* Larger than Desktop HD */
+body {
+  background: #000;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: "Open Sans" sans-serif;
+  color: #fff;
+  font-smoothing: antialiased;
+  text-size-adjust: 100%; }
+
+p {
+  margin: 0; }
+
+a {
+  line-height: 3em;
+  color: #000;
+  font-size: 1.5em;
+  padding: 5px; }
+
+a:hover {
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+  text-decoration: none; }
+
 .parallax-content {
   position: relative;
   height: 650px;
@@ -889,9 +913,7 @@ there.
   width: 30%;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%); }
 
 .landing-text, .landing-footer {
   color: #ffd52b;
@@ -906,47 +928,179 @@ there.
   z-index: 999; }
 
 .nav-icon {
-  width: 40px;
+  width: 30px;
   position: fixed;
-  top: 2em;
-  right: 2em; }
+  top: 0;
+  right: 2em;
+  z-index: 99999; }
 
 .nav-icon:after,
 .nav-icon:before,
 .nav-icon div {
   background-color: #fff;
-  -o-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  border-radius: 1px;
   content: "";
   display: block;
   height: 5px;
   margin: 7px 0;
-  -moz-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out; }
 
 .nav-icon:active:before {
-  transform: translateY(12px) rotate(135deg);
-  -moz-transform: translateY(12px) rotate(135deg);
-  -webkit-transform: translateY(12px) rotate(135deg); }
+  transform: translateY(12px) rotate(135deg); }
 
 .nav-icon:active:after {
-  transform: translateY(-12px) rotate(-135deg);
-  -moz-transform: translateY(-12px) rotate(-135deg);
-  -webkit-transform: translateY(-12px) rotate(-135deg); }
+  transform: translateY(-12px) rotate(-135deg); }
 
 .nav-icon:active div {
-  -moz-transform: scale(0);
-  -webkit-transform: scale(0);
   transform: scale(0); }
 
 .projects {
   width: 100%;
-  height: 700px;
+  height: 100%;
+  min-height: 620px;
   background-color: #000;
   z-index: 1; }
+
+.tags {
+  width: 100%;
+  height: 30px;
+  margin-top: 5em;
+  background-color: #fff; }
+
+.add-tag {
+  width: 10%;
+  height: 20px;
+  display: inline-flex; }
+
+#tag {
+  vertical-align: middle;
+  height: 26px;
+  margin: 2px 0 2px 1em;
+  text-align: center;
+  background-color: #796f5d;
+  color: #fff;
+  text-transform: uppercase; }
+
+.tag {
+  width: 10%;
+  display: inline-flex;
+  margin-left: 2em;
+  text-transform: uppercase; }
+
+.tag-submitted, .tag-close {
+  color: #796f5d; }
+
+.tag-close {
+  margin-left: 0.5em;
+  font-size: 1.8em;
+  margin-top: -0.41em; }
+
+.projects-container {
+  width: 100%;
+  display: inline-flex; }
+
+.project1, .project2,
+.project3 {
+  width: 50%;
+  height: 15em;
+  padding: 10px;
+  background-image: url(../images/logoRunU-bueno.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 5px solid #fff;
+  border-top: none;
+  position: relative; }
+  .project1 a, .project2 a,
+  .project3 a {
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    font-size: 0.8em;
+    font-weight: 900; }
+  .project1 a:hover, .project2 a:hover,
+  .project3 a:hover {
+    color: #000;
+    background-color: #fff; }
+  .project1 .votes, .project2 .votes,
+  .project3 .votes {
+    float: right;
+    display: inline-flex;
+    height: 40px;
+    width: 65px;
+    color: #000;
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    font-weight: 900; }
+  .project1 .positive-votes, .project2 .positive-votes,
+  .project3 .positive-votes, .project1 .negative-votes, .project2 .negative-votes,
+  .project3 .negative-votes {
+    background-image: url(../images/votePositive.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50%; }
+    .project1 .positive-votes p, .project2 .positive-votes p,
+    .project3 .positive-votes p, .project1 .negative-votes p, .project2 .negative-votes p,
+    .project3 .negative-votes p {
+      margin: 15px 0 0 8px;
+      position: absolute; }
+  .project1 .negative-votes, .project2 .negative-votes,
+  .project3 .negative-votes {
+    background-image: url(../images/voteNegative.svg); }
+    .project1 .negative-votes p, .project2 .negative-votes p,
+    .project3 .negative-votes p {
+      margin: 2px 0 0 8px;
+      position: absolute; }
+
+.project2,
+.project3 {
+  width: 25%;
+  border-left: none; }
+
+.summary {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99988;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  text-align: center; }
+
+.summary-list {
+  position: absolute;
+  width: 20%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  list-style: none; }
+
+.nav-icon-close {
+  width: 30px;
+  position: fixed;
+  top: 2em;
+  right: 2em; }
+
+.nav-icon-close:before {
+  transform: translateY(12px) rotate(135deg); }
+
+.nav-icon-close:after {
+  transform: translateY(-12px) rotate(-135deg); }
+
+.nav-icon-close div {
+  transform: scale(0); }
+
+.nav-icon-close:active:after,
+.nav-icon-close:active:before,
+.nav-icon-close:active div {
+  background-color: #fff;
+  border-radius: 1px;
+  content: "";
+  display: block;
+  height: 5px;
+  margin: 7px 0;
+  transition: all 0.2s ease-in-out; }
 
 /*# sourceMappingURL=style2.css.map */

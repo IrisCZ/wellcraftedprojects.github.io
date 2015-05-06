@@ -1,88 +1,61 @@
-.parallax-content {
-  position: relative;
-  height: 650px;
-  background-image: url(../images/bg.jpg);
-  background-size: 100% 650px;
-  background-position: top center;
-  background-attachment: fixed;
-  overflow: hidden; }
+/*
+Error: Undefined variable: "$bg-color".
+        on line 2 of C:\Users\Iris\Documents\GitHub\wellcraftedprojects.github.io\web\css\landing.sass
 
-.logo {
-  width: 25%;
-  height: 60px;
-  background-image: url(../images/logo.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: fixed;
-  top: 30px;
-  margin-left: 30px; }
+1: body
+2:     background: $bg-color
+3:     font-size: 14px
+4:     line-height: 1.6
+5:     font-family: 'Open Sans' sans-serif
+6:     color: $text-color
+7:     font-smoothing: antialiased
 
-.rain {
-  width: 100%;
-  height: 2600px;
-  background-image: url(../images/rain.png);
-  background-position: right bottom;
-  position: absolute;
-  left: 0;
-  top: -1600px; }
-
-.landing-text-container {
-  position: absolute;
-  width: 30%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%); }
-
-.landing-text, .landing-footer {
-  color: #ffd52b;
-  font-size: 20px;
-  text-align: justify;
-  letter-spacing: 0.03em; }
-
-.landing-footer {
-  display: inline-block;
-  text-align: right;
-  line-height: 2em;
-  z-index: 999; }
-
-.nav-icon {
-  width: 40px;
-  position: fixed;
-  top: 2em;
-  right: 2em; }
-
-.nav-icon:after,
-.nav-icon:before,
-.nav-icon div {
-  background-color: #fff;
-  -o-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  content: "";
-  display: block;
-  height: 5px;
-  margin: 7px 0;
-  -moz-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out; }
-
-.nav-icon:active:before {
-  transform: translateY(12px) rotate(135deg);
-  -moz-transform: translateY(12px) rotate(135deg);
-  -webkit-transform: translateY(12px) rotate(135deg); }
-
-.nav-icon:active:after {
-  transform: translateY(-12px) rotate(-135deg);
-  -moz-transform: translateY(-12px) rotate(-135deg);
-  -webkit-transform: translateY(-12px) rotate(-135deg); }
-
-.nav-icon:active div {
-  -moz-transform: scale(0);
-  -webkit-transform: scale(0);
-  transform: scale(0); }
-
-/*# sourceMappingURL=landing.css.map */
+Backtrace:
+C:\Users\Iris\Documents\GitHub\wellcraftedprojects.github.io\web\css\landing.sass:2
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:384:in `visit_prop'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:115:in `with_frame'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `block (2 levels) in visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `map'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `block in visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:418:in `visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:115:in `with_frame'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `map'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:157:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:8:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/root_node.rb:36:in `css_tree'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:285:in `render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:396:in `run'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:62:in `process_result'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
+C:/Program Files (x86)/Koala/bin/sass:18:in `load'
+C:/Program Files (x86)/Koala/bin/sass:18:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$bg-color\".\A         on line 2 of C:\Users\Iris\Documents\GitHub\wellcraftedprojects.github.io\web\css\landing.sass\A \A 1: body\A 2:     background: $bg-color\A 3:     font-size: 14px\A 4:     line-height: 1.6\A 5:     font-family: 'Open Sans' sans-serif\A 6:     color: $text-color\A 7:     font-smoothing: antialiased"; }

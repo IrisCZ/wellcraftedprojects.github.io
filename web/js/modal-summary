@@ -1,0 +1,9 @@
+(function() {
+    var dialog = document.getElementById('summary');
+    document.getElementById('open-modal').onclick = function() {
+        dialog.show();
+    };
+    document.getElementById('close-modal').onclick = function() {
+        dialog.close();
+    };
+})();

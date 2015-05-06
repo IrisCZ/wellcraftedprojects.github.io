@@ -7,18 +7,22 @@
 	<meta name="description" content="Software Projects Well Crafted">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	
 	<link rel="shortcut icon" href="images/favicon.ico">
   	<link rel="stylesheet" href="css/vendor/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/style2.css" type="text/css" media="screen">
+  	<link rel="stylesheet" type="text/css" href="css/vendor/dialog-polyfill.css" />
+  	<link rel="stylesheet" href="css/style2.css" type="text/css" media="screen">
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/parallax.js"></script>
-<body>
-	<section class="parallax-content">
+	<script src="js/vendor/dialog-polyfill.js"></script>
 
+
+<body>
+	<article class="parallax-content">
+		<a name="about"></a>
 		<div class="logo"></div>
 		<div class="rain"></div>		
-		<div class="nav-icon">
+		<div class="nav-icon modal-dialog" id="toggle-modal" data-toggle="modal" data-target="#summary">
   			<div></div>
 		</div>		
 		<div class="landing-text-container">
@@ -26,8 +30,80 @@
 			</span>		
 			<span class="landing-footer"> if you want.</span>
 		</div>		
-	</section>
-	<section class="projects">
-	</section>
+	</article>
+	<article class="projects">
+		<a name="projects"></a>
+		<div class="tags">
+			<div class="add-tag">
+				<input type="text" class="insert-tag" id="tag" placeholder="Add Filter">
+			</div>
+			<div class="tag">
+				<p class="tag-submitted">tag </p>
+				<p class="tag-close">✘</p>
+			</div>
+		</div>
+		<section class="projects-container">
 
+			<div class="project1">
+				<p class="name">Projects Name</p>
+				<p class="description">Description</p>
+				<p class="author">Author</p>
+                <a href="" class="link">whatever.github.io</a>
+                <div class="votes">
+					<div class="positive-votes"><p class="votes-text">5</p></div>
+					<div class="negative-votes"><p class="votes-text">5</p></div>
+				</div>
+			</div>	
+
+			<div class="project2">
+				<p class="name">Projects Name</p>
+				<p class="description">Description</p>
+				<p class="author">Author</p>
+                <a href="" class="link">whatever.github.io</a>
+                <div class="votes">
+					<div class="positive-votes"><p class="votes-text">5</p></div>
+					<div class="negative-votes"><p class="votes-text">5</p></div>
+				</div>
+			</div>
+
+			<div class="project3">
+				<p class="name">Projects Name</p>
+				<p class="description">Description</p>
+				<p class="author">Author</p>
+                <a href="" class="link">whatever.github.io</a>
+                <div class="votes">
+					<div class="positive-votes"><p class="positive-votes-text">5</p></div>
+					<div class="negative-votes"><p class="negative-votes-text">5</p></div>
+				</div>
+			</div>	
+
+		</section>			
+
+	</article>
+
+	<dialog class="summary" id="summary">
+		<div class="nav-icon-close" id="close-modal" data-toggle="modal" data-target="#">
+  			<div></div>
+		</div>	
+		<ul class="summary-list">
+			<li><a href="#about">About</a></li>
+			<li><a href="#projects">Projects</a></li>
+			<li><a href="#login">LogIn</a></li>
+			<li><a href="#contact">Contact</a></li>
+		</ul>
+	</dialog>
+
+	<script type="text/javascript">
+	  var opened = false;
+	  (function() {
+        $('#toggle-modal').click(function(){
+          if (!opened){
+            document.getElementById("summary").show();        		
+          } else {
+            document.getElementById("summary").close();
+          }
+          opened = !opened;
+        });
+      })();
+	</script>
 </body>
