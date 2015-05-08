@@ -38,18 +38,17 @@
 				<input type="text" class="insert-tag" id="tag" placeholder="Add Filter">
 			</div>
 			<div class="tag">
-				<p class="tag-submitted">tag </p>
-				<p class="tag-close">✘</p>
+				<div class="tag-submitted">tag </div>
+				<button class="tag-close">✘</button>
 			</div>
 		</div>
 		<section class="projects-container">
 
 			<div class="project1">
 				<div class="project1-container">
-					<p class="name">Projects Name</p>
+					<p class="name">RunU</p>
 					<p class="description">Description</p>
-					<p class="author">Author</p>
-                	<a href="" class="link">whatever.github.io</a>
+                	<a href="" class="link">https://github.com/runu</a>
                 	<div class="votes">
 						<div class="positive-votes"><p class="votes-text">5</p></div>
 						<div class="negative-votes"><p class="votes-text">5</p></div>
@@ -59,26 +58,42 @@
 			</div>	
 
 			<div class="project2">
-				<p class="name">Projects Name</p>
-				<p class="description">Description</p>
-				<p class="author">Author</p>
-                <a href="" class="link">whatever.github.io</a>
-                <div class="votes">
-					<div class="positive-votes"><p class="votes-text">5</p></div>
-					<div class="negative-votes"><p class="votes-text">5</p></div>
+				<div class="project1-container">
+					<p class="name">Spring Framework</p>
+					<p class="description">The Spring Framework provides a comprehensive programming and configuration model for modern Java-based enterprise applications -- on any kind of deployment platform.</p>
+					<a href="https://github.com/spring-projects/spring-framework" class="link">https://github.com/spring-projects/spring-framework</a>
+                	<div class="votes">
+						<div class="positive-votes"><p class="votes-text">5</p></div>
+						<div class="negative-votes"><p class="votes-text">5</p></div>
+					</div>
 				</div>
+				<div class="project2-img"></div>
 			</div>
 
 			<div class="project3">
-				<p class="name">Projects Name</p>
-				<p class="description">Description</p>
-				<p class="author">Author</p>
-                <a href="" class="link">whatever.github.io</a>
-                <div class="votes">
-					<div class="positive-votes"><p class="positive-votes-text">5</p></div>
-					<div class="negative-votes"><p class="negative-votes-text">5</p></div>
+				<div class="project1-container">
+					<p class="name">golang/go</p>
+					<p class="description">Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.</p>
+                	<a href="https://github.com/golang/go" class="link">https://github.com/golang/go</a>
+                	<div class="votes">
+						<div class="positive-votes"><p class="votes-text">5</p></div>
+						<div class="negative-votes"><p class="votes-text">5</p></div>
+					</div>
 				</div>
-			</div>	
+				<div class="project3-img"></div>
+			</div>
+			<div class="project4">
+				<div class="project1-container">
+					<p class="name">Grails</p>
+					<p class="description">Grails is a framework used to build web applications with the Groovy programming language. The core framework is very extensible and provide easy integration of add-on features.</p>
+                	<a href="https://github.com/grails/grails-core" class="link">https://github.com/grails/grails-core </a>
+                	<div class="votes">
+						<div class="positive-votes"><p class="votes-text">5</p></div>
+						<div class="negative-votes"><p class="votes-text">5</p></div>
+					</div>
+				</div>
+				<div class="project4-img"></div>
+			</div>
 
 		</section>			
 
@@ -92,7 +107,30 @@
 			<li><a href="#about">About</a></li>
 			<li><a href="#projects">Projects</a></li>
 			<li><a href="#login">LogIn</a></li>
+			<li><a href="#new-project">Add a New Project</a></li>
 			<li><a href="#contact">Contact</a></li>
+		</ul>
+	</dialog>
+	<dialog class="new-project" id="new-project">
+		<div class="nav-icon-close" id="close-modal" data-toggle="modal" data-target="#">
+  			<div></div>
+		</div>	
+		<ul class="new-project-list">
+			<li>
+				<input type="text" class="insert-name" placeholder="What´s your Project´s Name?">
+			</li>
+			<li>
+				<input type="text" class="insert-description" placeholder="Add a brief Description">
+			</li>
+			<li>
+				<input type="text" class="insert-tags" placeholder="Write some Tags that mach it">
+			</li>
+			<li>
+				<input type="text" class="insert-tags" placeholder="What´s the link?">
+			</li>
+			<li>
+				<input type="text" class="insert-logo" placeholder="Do you have a logo?">
+			</li>
 		</ul>
 	</dialog>
 
@@ -104,6 +142,19 @@
             document.getElementById("summary").show();        		
           } else {
             document.getElementById("summary").close();
+          }
+          opened = !opened;
+        });
+      })();
+	</script>
+		<script type="text/javascript">
+	  var opened = false;
+	  (function() {
+        $('#new-project').click(function(){
+          if (!opened){
+            document.getElementById("new-project").show();        		
+          } else {
+            document.getElementById("new-project").close();
           }
           opened = !opened;
         });

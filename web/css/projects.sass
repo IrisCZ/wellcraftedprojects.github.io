@@ -22,8 +22,7 @@
     height: 26px
     margin: 2px 0 2px 1em
     text-align: center
-    background-color: $primary-color
-    color: #fff
+    background-color: $bg-color
     text-transform: uppercase
 
 .tag
@@ -33,17 +32,22 @@
     text-transform: uppercase
 
 .tag-submitted
-    color: $primary-color
+    color: $bg-color
+    cursor: default
 
 .tag-close
-    @extend .tag-submitted
+    color: $bg-color
     margin-left: 0.5em
     font-size: 1.8em
     margin-top: -0.41em
+    width: 5px
+    height: 1.5em
+    border: none
 
 .projects-container
-    width: 100%
+    max-width: 100%
     display: inline-flex
+    flex-flow: row wrap
 
 .project1-img
     width: 100%
@@ -57,28 +61,58 @@
     top: 0
     z-index: 999
 
+.project1-img:hover
+    opacity: 0.2
+    z-index: 1
+
 .project1-container
     z-index: 555
     padding: 10px
     height: 100%
 
-.project1-img:hover
-    opacity: 0.2
-    z-index: 1
-
 .project1
     width: 50%
-    height: 15em
-    // border: 5px solid #fff
+    height: 17em
+    //border: 5px solid #fff
     border-top: none
     position: relative
+    border-bottom: 12px solid #fff
+    border-right: 12px solid #fff
+    border-left: 12px solid #fff
 
+
+.project2,
+.project3,
+.project4
+    @extend .project1
+    width: 25%
+    border-left: none
+
+    .project2-img
+        @extend .project1-img
+        background-image: url(../projects/spring.png)
+
+    .project3-img
+        @extend .project1-img
+        background-image: url(../projects/go.png)
+
+    .project4-img
+        @extend .project1-img
+        background-image: url(../projects/Grails.sh-600x600.png)
+
+.project1,
+.project2,
+.project3,
+.project4
     a
         color: #fff
         position: absolute
         bottom: 0
-        font-size: 0.8em
+        font-size: 0.75em
         font-weight: 900
+        line-height: 1em
+        max-width: 70%
+        padding: 5px 0
 
     a:hover
         color: #000
@@ -94,30 +128,25 @@
         bottom: 5px
         right: 0
         font-weight: 900
-    
-    .votes:after
-        clear: both
 
-	    .positive-votes
-	        background-image: url(../images/votePositive.svg)
-	        background-size: contain
-	        background-repeat: no-repeat
-	        width: 50%
+    .positive-votes
+        background-image: url(../images/votePositive.svg)
+        background-size: contain
+        background-repeat: no-repeat
+        width: 50%
 
-	        p
-	            margin: 15px 0 0 8px
-	            position: absolute
+        p
+            margin: 15px 0 0 8px
+            position: absolute
 
-	    .negative-votes
-	        @extend .positive-votes
-	        background-image: url(../images/voteNegative.svg)
+    .negative-votes
+        @extend .positive-votes
+        background-image: url(../images/voteNegative.svg)
 
-	        p
-	            margin: 2px 0 0 8px
-	            position: absolute
-
-.project2,
-.project3
-    @extend .project1
-    width: 25%
-    border-left: none
+        p
+            margin: 2px 0 0 8px
+            position: absolute
+.name
+    text-transform: uppercase
+    font-size: 0.8
+    font-weight: 900
