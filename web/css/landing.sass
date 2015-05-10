@@ -9,7 +9,9 @@ body
 
 p
     margin: 0
-a
+a,
+a:visited
+
     line-height: 3em
     color: #000
     font-size: 1.5em
@@ -40,8 +42,9 @@ a:hover
         size: contain
         repeat: no-repeat
     position: fixed
-    top: 30px
+    top: 22px
     margin-left: 30px
+    z-index: 999
 
 .rain
     width: 100%
@@ -85,7 +88,7 @@ a:hover
 
 .nav-icon:after,
 .nav-icon:before,
-.nav-icon div
+.nav-icon > div
     background-color: #fff
     border-radius: 1px
     content: ""
@@ -93,6 +96,12 @@ a:hover
     height: 5px
     margin: 7px 0
     transition: all 0.2s ease-in-out
+
+
+.nav-icon-black:after,
+.nav-icon-black:before,
+.nav-icon-black > div
+    background-color: #000
 
 .nav-icon:active:before
     transform: translateY(12px) rotate(135deg)
@@ -102,4 +111,13 @@ a:hover
 
 .nav-icon:active div
     transform: scale(0)
+
+.nav-icon-close
+    background-color: #000
+    
+.nav-icon-close:after,
+.nav-icon-close:before,
+.nav-icon-close > div
+    background-color: #000
+
 
