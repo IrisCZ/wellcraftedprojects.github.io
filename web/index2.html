@@ -180,7 +180,7 @@
 		<ul class="summary-list">
 			<li><a href="#">About</a></li>
 			<li><a href="#projects">Projects</a></li>
-			<li><a href="#login">LogIn</a></li>
+			<li><a id="login" href="#login-window">LogIn</a></li>
 			<li><a id="add-project" href="#new-project">Add a New Project</a></li>
 			<li><a href="#contact">Contact</a></li>
 		</ul>
@@ -191,21 +191,75 @@
 		</div>	
 		<ul class="new-project-list">
 			<li>
-				<input type="text" class="insert-name" placeholder="What´s your Project´s Name?">
+				<input type="text" class="insert" placeholder="What´s your Project´s Name?">
 			</li>
 			<li>
-				<input type="text" class="insert-description" placeholder="Add a brief Description">
+				<input type="text" class="insert" placeholder="Add a brief Description">
 			</li>
 			<li>
-				<input type="text" class="insert-tags" placeholder="Write some Tags that mach it">
+				<input type="text" class="insert" placeholder="Write some Tags that mach it">
 			</li>
 			<li>
-				<input type="text" class="insert-tags" placeholder="What´s the link?">
+				<input type="url " class="insert" placeholder="What´s the link?">
 			</li>
 			<li>
-				<input type="text" class="insert-logo" placeholder="Do you have a logo?">
+				<input type="text" class="insert" placeholder="Do you have a logo?">
 			</li>
 		</ul>
+		<button class="send-button">
+			<div class="lines-button arrow arrow-right" type="button" role="button" aria-label="Toggle Navigation">
+  				<div class="send-text"><p>send</p></div>
+			</div>
+		</button>
+	</dialog>
+	<dialog id="login-window">
+		<div class="nav-icon-close" id="close-modal-new" data-toggle="modal" data-target="#">
+  			<div></div>
+		</div>	
+		<div  class="login-user">
+			<ul>
+				<li>
+					<input type="email" class="insert" placeholder="Type your email">
+				</li>
+				<li>
+					<input type="text" class="insert" placeholder="Type your password">
+				</li>
+				<li>
+                    <div class="remember">
+                        <input id="rememberme" type="checkbox" class="checkbox" />
+                        <label for="rememberme" class="rememberme-text"><span></span>Remember me
+                        </label>
+                    </div>
+				</li>
+			</ul>
+			<button class="send-newuser">
+				<div class="lines-button arrow arrow-right" type="button" role="button" aria-label="Toggle Navigation">
+  					<div class="send-text"><p>login</p></div>
+				</div>
+			</button>
+		</div>
+		<div class="login-newuser">
+			<ul>
+				<li>
+					<a href='#' class="btn btn-default bitbucket"> <i class="fa fa-bitbucket modal-icons"></i> Sign In with BitBucket </a>
+				</li>
+				<li>
+					<a href='#' class="btn btn-default github"> <i class="fa fa-github modal-icons"></i> Sign In with GitHub </a>
+				</li>
+				<li class="login-mail">
+                    <input type="text" class="insert mail" placeholder="Sign with your email">
+					<input type="text" class="insert newuser" placeholder="Type your name">
+					<input type="text" class="insert newuser" placeholder="Type a password">
+				</li>
+			</ul>
+			<button class="send-newuser">
+				<div class="lines-button arrow arrow-right" type="button" role="button" aria-label="Toggle Navigation">
+  					<div class="send-text"><p>send</p></div>
+				</div>
+			</button>
+
+		</div>
+		
 	</dialog>
 
 	<script type="text/javascript">
@@ -234,7 +288,17 @@
 
           }
         });
-        $('.summary-list a:not(#add-project)').click(function(){
+        var newOpened = false;
+        $('#login').click(function(){
+          if (!newOpened){
+            document.getElementById("summary").close();
+            document.getElementById("login-window").show();
+            newOpened = true;
+            opened = false;
+
+          }
+        });
+        $('.summary-list a:not(#add-project, #login)').click(function(){
         	$('#toggle-modal').click();
         });
         $('.project').each(function(index){
