@@ -8,18 +8,18 @@ $(document).ready(function(){
     $('.landing-footer').css({
       'transform' : 'translate(0px, '+ wScroll *1.15 +'%)'
     });
-    if (wScroll > 570) {
-    	var height = wScroll - 565;
-    	var top = 80 - height;
+    if (wScroll > 560) {
+    	var height = wScroll - 560;
+    	var top = 60 - height;
     	if (top < 0){
     		top = 0;
     	}
     	var paddingTop = height;
-    	if (paddingTop > 80){
-    		paddingTop = 80;
+    	if (paddingTop > 60){
+    		paddingTop = 60;
     	}
-    	if (height > 110){
-    		height = 110;
+    	if (height > 100){
+    		height = 100;
     	}
     	$('.projects-header').css({
     	    'height':height,
@@ -33,7 +33,7 @@ $(document).ready(function(){
     	$('.logo').css({
     		'background-image':'url(images/logoN.svg)'
     	});$('.projects-container').css({
-    		'margin-top': 105 - top
+    		'margin-top': 65 - top
     	});
     	$('.nav-icon').addClass('nav-icon-black');
     } else {

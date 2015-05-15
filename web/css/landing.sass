@@ -44,7 +44,7 @@ li
         size: contain
         repeat: no-repeat
     position: fixed
-    top: 22px
+    top: 10px
     margin-left: 30px
     z-index: 999
 
@@ -87,6 +87,7 @@ li
     right: 2em
     z-index: 99999
     cursor: pointer
+    margin-top: 10px
 
 .nav-icon:after,
 .nav-icon:before,
@@ -99,17 +100,17 @@ li
     margin: 7px 0
     transition: all 0.2s ease-in-out
 
-.nav-icon:active:before
+.nav-icon:active:before,
 .nav-icon:hover:before
 
     transform: translateY(12px) rotate(135deg)
 
-.nav-icon:active:after
+.nav-icon:active:after,
 .nav-icon:hover:after
 
     transform: translateY(-12px) rotate(-135deg)
 
-.nav-icon:active div
+.nav-icon:active div,
 .nav-icon:hover div
 
     transform: scale(0)

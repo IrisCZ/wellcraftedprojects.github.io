@@ -271,6 +271,10 @@
           		document.getElementById("new-project").close();
           		newOpened = false;
           	}
+          	if(loginOpened){
+          		document.getElementById("login-window").close();
+          		loginOpened = false;
+          	}
             document.getElementById("summary").show();        		
           } else {
             document.getElementById("summary").close();
@@ -288,12 +292,12 @@
 
           }
         });
-        var newOpened = false;
+        var loginOpened = false;
         $('#login').click(function(){
-          if (!newOpened){
+          if (!loginOpened){
             document.getElementById("summary").close();
             document.getElementById("login-window").show();
-            newOpened = true;
+            loginOpened = true;
             opened = false;
 
           }
