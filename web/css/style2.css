@@ -934,7 +934,7 @@ li {
   line-height: 2em;
   z-index: 999; }
 
-.nav-icon, .nav-icon-close div {
+.nav-icon, .nav-icon-arrow, .nav-icon-close div {
   width: 30px;
   position: fixed;
   top: 0;
@@ -943,11 +943,13 @@ li {
   cursor: pointer;
   margin-top: 10px; }
 
-.nav-icon:after, .nav-icon-close:after, .nav-icon-close div:after,
+.nav-icon:after, .nav-icon-arrow:after, .nav-icon-close div:after, .nav-icon-close:after,
 .nav-icon:before,
-.nav-icon-close:before,
+.nav-icon-arrow:before,
 .nav-icon-close div:before,
+.nav-icon-close:before,
 .nav-icon > div,
+.nav-icon-arrow > div,
 .nav-icon-close div > div {
   background-color: #fff;
   border-radius: 1px;
@@ -956,6 +958,19 @@ li {
   height: 5px;
   margin: 7px 0;
   transition: all 0.2s ease-in-out; }
+
+.nav-icon-arrow {
+  right: 6em;
+  display: none;
+  background-color: #000; }
+
+.nav-icon-arrow:before {
+  background-color: #000;
+  transform: translateY(4px) rotate(150deg); }
+
+.nav-icon-arrow:after {
+  background-color: #000;
+  transform: translateY(-4px) rotate(-150deg); }
 
 .nav-icon-close:before {
   transform: translateY(12px) rotate(135deg);
@@ -1291,7 +1306,7 @@ li {
     max-width: 560px;
     height: 10em; }
 
-  .nav-icon, .nav-icon-close div {
+  .nav-icon, .nav-icon-arrow, .nav-icon-close div {
     right: 1em; }
 
   .project:first-child {
