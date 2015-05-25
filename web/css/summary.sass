@@ -19,32 +19,3 @@
     transform: translate(-50%, -50%)
     list-style: none
 
-
-
-//navicon
-
-.nav-icon-close
-    width: 30px
-    position: fixed
-    top: 2em
-    right: 2em
-
-.nav-icon-close:before
-    transform: translateY(12px) rotate(135deg)
-
-.nav-icon-close:after
-    transform: translateY(-12px) rotate(-135deg)
-
-.nav-icon-close div
-    transform: scale(0)
-
-.nav-icon-close:active:after,
-.nav-icon-close:active:before,
-.nav-icon-close:active div
-    background-color: #fff
-    border-radius: 1px
-    content: ""
-    display: block
-    height: 5px
-    margin: 7px 0
-    transition: all 0.2s ease-in-out

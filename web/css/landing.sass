@@ -32,7 +32,7 @@ li
     height: 650px
     background:
         image: url(../images/bg.jpg)
-        size: 100% 650px
+        size: cover
         position: top center
         attachment: fixed
     overflow: hidden
@@ -102,31 +102,23 @@ li
     margin: 7px 0
     transition: all 0.2s ease-in-out
 
-.nav-icon:active:before,
-.nav-icon:hover:before
-
+.nav-icon-close:before
+    @extend .nav-icon:before
     transform: translateY(12px) rotate(135deg)
+    margin: 4px 0
+    background-color: #000
 
-.nav-icon:active:after,
-.nav-icon:hover:after
-
+.nav-icon-close:after
+    @extend .nav-icon:after
     transform: translateY(-12px) rotate(-135deg)
+    margin: 19px 0
+    background-color: #000
 
-.nav-icon:active div,
-.nav-icon:hover div
-
+.nav-icon-close div
+    @extend .nav-icon
     transform: scale(0)
-
+    
 .nav-icon-black:after,
 .nav-icon-black:before,
 .nav-icon-black > div
     background-color: #000
-.nav-icon-close
-    background-color: #000
-    
-.nav-icon-close:after,
-.nav-icon-close:before,
-.nav-icon-close > div
-    background-color: #000
-
-

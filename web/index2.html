@@ -14,6 +14,7 @@
   	<link rel="stylesheet" href="css/style2.css" type="text/css" media="screen">
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/nav-icon.js"></script>
 	<script type="text/javascript" src="js/parallax.js"></script>
 	<script src="js/vendor/dialog-polyfill.js"></script>
 
@@ -175,9 +176,7 @@
 	</article>
 
 	<dialog class="summary" id="summary">
-		<div class="nav-icon-close" id="close-modal" data-toggle="modal" data-target="#">
-  			<div></div>
-		</div>	
+		
 		<ul class="summary-list">
 			<li><a href="#">About</a></li>
 			<li><a href="#projects">Projects</a></li>
@@ -187,9 +186,7 @@
 		</ul>
 	</dialog>
 	<dialog class="new-project" id="new-project">
-		<div class="nav-icon-close" id="close-modal-new" data-toggle="modal" data-target="#summary">
-  			<div></div>
-		</div>	
+			
 		<ul class="new-project-list">
 			<li>
 				<input type="text" class="insert" placeholder="What´s your Project´s Name?">
@@ -214,9 +211,7 @@
 		</button>
 	</dialog>
 	<dialog id="login-window">
-		<div class="nav-icon-close" id="close-modal-new" data-toggle="modal" data-target="#">
-  			<div></div>
-		</div>	
+	
 		<div  class="login-user">
 			<ul>
 				<li>
@@ -262,57 +257,4 @@
 		</div>
 		
 	</dialog>
-
-	<script type="text/javascript">
-	  var opened = false;
-	  (function() {
-        $('#toggle-modal').click(function(){
-          if (!opened){
-          	if(newOpened){
-          		document.getElementById("new-project").close();
-          		newOpened = false;
-          	}
-          	if(loginOpened){
-          		document.getElementById("login-window").close();
-          		loginOpened = false;
-          	}
-            document.getElementById("summary").show();        		
-          } else {
-            document.getElementById("summary").close();
-          }
-          opened = !opened;
-
-        });
-	    var newOpened = false;
-        $('#add-project').click(function(){
-          if (!newOpened){
-            document.getElementById("summary").close();
-            document.getElementById("new-project").show();
-            newOpened = true;
-            opened = false;
-
-          }
-        });
-        var loginOpened = false;
-        $('#login').click(function(){
-          if (!loginOpened){
-            document.getElementById("summary").close();
-            document.getElementById("login-window").show();
-            loginOpened = true;
-            opened = false;
-
-          }
-        });
-        $('.summary-list a:not(#add-project, #login)').click(function(){
-        	$('#toggle-modal').click();
-        });
-        $('.project').each(function(index){
-        	var images = ['logoRunU-bueno','spring','go','grails'];
-        	var image = images[index] || 'grails';
-        	$(this).find('.project-img').css({
-        		'background-image':'url(images/projects/'+image+'.png)'
-        	})
-        });
-      })();
-	</script>
 </body>

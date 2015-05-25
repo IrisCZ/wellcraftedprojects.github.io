@@ -889,13 +889,14 @@ li {
   position: relative;
   height: 650px;
   background-image: url(../images/bg.jpg);
-  background-size: 100% 650px;
+  background-size: cover;
   background-position: top center;
   background-attachment: fixed;
   overflow: hidden; }
 
 .logo {
   width: 25%;
+  max-width: 280px;
   height: 60px;
   background-image: url(../images/logo.svg);
   background-size: contain;
@@ -933,7 +934,7 @@ li {
   line-height: 2em;
   z-index: 999; }
 
-.nav-icon {
+.nav-icon, .nav-icon-close div {
   width: 30px;
   position: fixed;
   top: 0;
@@ -942,9 +943,12 @@ li {
   cursor: pointer;
   margin-top: 10px; }
 
-.nav-icon:after,
+.nav-icon:after, .nav-icon-close:after, .nav-icon-close div:after,
 .nav-icon:before,
-.nav-icon > div {
+.nav-icon-close:before,
+.nav-icon-close div:before,
+.nav-icon > div,
+.nav-icon-close div > div {
   background-color: #fff;
   border-radius: 1px;
   content: "";
@@ -953,29 +957,22 @@ li {
   margin: 7px 0;
   transition: all 0.2s ease-in-out; }
 
-.nav-icon:active:before,
-.nav-icon:hover:before {
-  transform: translateY(12px) rotate(135deg); }
+.nav-icon-close:before {
+  transform: translateY(12px) rotate(135deg);
+  margin: 4px 0;
+  background-color: #000; }
 
-.nav-icon:active:after,
-.nav-icon:hover:after {
-  transform: translateY(-12px) rotate(-135deg); }
+.nav-icon-close:after {
+  transform: translateY(-12px) rotate(-135deg);
+  margin: 19px 0;
+  background-color: #000; }
 
-.nav-icon:active div,
-.nav-icon:hover div {
+.nav-icon-close div {
   transform: scale(0); }
 
 .nav-icon-black:after,
 .nav-icon-black:before,
 .nav-icon-black > div {
-  background-color: #000; }
-
-.nav-icon-close {
-  background-color: #000; }
-
-.nav-icon-close:after,
-.nav-icon-close:before,
-.nav-icon-close > div {
   background-color: #000; }
 
 .projects {
@@ -1132,32 +1129,6 @@ li {
   transform: translate(-50%, -50%);
   list-style: none; }
 
-.nav-icon-close {
-  width: 30px;
-  position: fixed;
-  top: 2em;
-  right: 2em; }
-
-.nav-icon-close:before {
-  transform: translateY(12px) rotate(135deg); }
-
-.nav-icon-close:after {
-  transform: translateY(-12px) rotate(-135deg); }
-
-.nav-icon-close div {
-  transform: scale(0); }
-
-.nav-icon-close:active:after,
-.nav-icon-close:active:before,
-.nav-icon-close:active div {
-  background-color: #fff;
-  border-radius: 1px;
-  content: "";
-  display: block;
-  height: 5px;
-  margin: 7px 0;
-  transition: all 0.2s ease-in-out; }
-
 .new-project, #login-window {
   position: fixed;
   top: 0;
@@ -1311,13 +1282,16 @@ li {
 @media only screen and (max-width: 640px) {
   .landing-text-container {
     text-align: justify;
-    width: 56%; }
+    width: 56%;
+    font-size: 1.2em; }
 
   .logo {
     margin-left: 10px;
-    width: 65%; }
+    width: 65%;
+    max-width: 560px;
+    height: 10em; }
 
-  .nav-icon {
+  .nav-icon, .nav-icon-close div {
     right: 1em; }
 
   .project:first-child {
@@ -1330,6 +1304,12 @@ li {
     width: 30%; }
 
   .tag {
-    width: initial; } }
+    width: initial; }
+
+  .summary-list {
+    width: 100%; }
+
+  .new-project-list {
+    width: 100%; } }
 
 /*# sourceMappingURL=style2.css.map */
